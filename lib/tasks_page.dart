@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
 // TODO : Logo.
-class TasksPage extends StatefulWidget {
-  const TasksPage({super.key, required this.title});
+class MainTasksPage extends StatefulWidget {
+  const MainTasksPage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<TasksPage> createState() => _TasksPageState();
+  State<MainTasksPage> createState() => _MainTasksPageState();
 }
 
-class _TasksPageState extends State<TasksPage> {
+class _MainTasksPageState extends State<MainTasksPage> {
+  // TODO : Check in the tutorial if the scaffold and the formKey needs to be
+  // TODO > abstracted from this class
   // TODO : Make initial text/tasks appear/disappear.
   // TODO : Add task on popup window.
   // TODO : Add date on second popup window
@@ -21,12 +23,6 @@ class _TasksPageState extends State<TasksPage> {
   // TODO > tasks.
   final formKey = GlobalKey<FormState>();
   final List<String?> _tasks = [];
-
-  void _addTask(newTask) {
-    setState(() {
-      _tasks.add(newTask);
-    });
-  }
 
   // DatePickerDialog(
   //   initialDate: DateTime.now(),
@@ -47,16 +43,9 @@ class _TasksPageState extends State<TasksPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            // TODO : Set the color of the text relating it with the theme
-            // TODO : Abstract the text and tasks from the scaffold
-            _tasks.isEmpty
-              ? const Text(
-                'Tap the plus button to add a task',
-                style: TextStyle(color: Colors.grey),
-              )
-              : Text(
-                '$_tasks',
-              ),
+            ItemsListVisualizer(
+                itemsList: _tasks
+            ),
           ],
         ),
       ),
@@ -79,11 +68,27 @@ class _TasksPageState extends State<TasksPage> {
                             // TODO : Make the color of the hint text grey.
                             hintText: 'New task',
                           ),
-                          onSaved: (newTask) => _addTask(newTask),
+                          onSaved: (newTask) {
+                            setState(() {
+                              _tasks.add(newTask);
+                            });
+                          },
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+                            Flexible(
+                              child: IconButton(
+                                  onPressed:() => 0,
+                                  icon: const Icon(Icons.access_time)
+                              ),
+                            ),
+                            Flexible(
+                              child: IconButton(
+                                  onPressed:() => 0,
+                                  icon: const Icon(Icons.delete)
+                              ),
+                            ),
                             Flexible(
                               child: ElevatedButton(
                                 child: const Text('Save'),
@@ -95,12 +100,6 @@ class _TasksPageState extends State<TasksPage> {
                                   Navigator.pop(context);
                                 },
                               )
-                            ),
-                            Flexible(
-                              child: IconButton(
-                                  onPressed:() => 0,
-                                  icon: const Icon(Icons.access_time)
-                              ),
                             ),
                           ],
                         ),
@@ -116,5 +115,24 @@ class _TasksPageState extends State<TasksPage> {
         child: const Icon(Icons.add),
       ),
     );
+  }
+}
+
+class ItemsListVisualizer extends StatelessWidget {
+  const ItemsListVisualizer({super.key, required this.itemsList});
+
+  final List itemsList;
+
+  @override
+  Widget build(BuildContext context) {
+    return itemsList.isEmpty
+        ? const Text(
+            'Tap the plus button to add a task',
+            // TODO : Set the color of the text relating it with the theme
+            style: TextStyle(color: Colors.grey),
+          )
+        : Text(
+          '$itemsList',
+          );
   }
 }

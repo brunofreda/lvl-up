@@ -18,7 +18,7 @@ class AppWidget extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: const TasksPage(title: 'LvL Up'),
+      home: const MainTasksPage(title: 'LvL Up'),
     );
   }
 }
