@@ -4,8 +4,10 @@ A new Flutter project.
 
 # Things the full app would have
 
--The colors of all the widgets would be set relating them to the theme
--Themes
+- Title logo
+- Store the data in your account, which would be synced with the webapp
+- The option to add multiple tasks page, making the corresponding abstraction from the MainTasksPage
+- Themes
 
 ## Getting Started
 

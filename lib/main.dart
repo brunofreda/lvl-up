@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'tasks_page.dart';
+import 'pages/tasks_page.dart';
 
 void main() {
   runApp(const AppWidget());
@@ -14,9 +14,9 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'LvL Up',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        useMaterial3: true,
+        primarySwatch: Colors.blueGrey,
       ),
       home: const MainTasksPage(title: 'LvL Up'),
     );
