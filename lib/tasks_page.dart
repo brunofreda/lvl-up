@@ -13,8 +13,6 @@ class MainTasksPage extends StatefulWidget {
 class _MainTasksPageState extends State<MainTasksPage> {
   // TODO : Check in the tutorial if the scaffold and the formKey needs to be
   // TODO > abstracted from this class
-  // TODO : Make initial text/tasks appear/disappear.
-  // TODO : Add task on popup window.
   // TODO : Add date on second popup window
   // TODO : Make date selected replace clock icon and make it
   // TODO > reappear if date is deleted.  // TODO: Create points counter.
@@ -24,11 +22,11 @@ class _MainTasksPageState extends State<MainTasksPage> {
   final formKey = GlobalKey<FormState>();
   final List<String?> _tasks = [];
 
-  // DatePickerDialog(
-  //   initialDate: DateTime.now(),
-  //   firstDate: DateTime.now(),
-  //   lastDate: DateTime(2024)),
-  // ,
+  void _addTask(newTask) {
+    setState(() {
+      _tasks.add(newTask);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,75 +42,15 @@ class _MainTasksPageState extends State<MainTasksPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ItemsListVisualizer(
-                itemsList: _tasks
+                itemsList: _tasks,
             ),
           ],
         ),
       ),
-      // TODO : Abstract button from scaffold
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showModalBottomSheet(
-            context: context,
-            builder: (BuildContext context) {
-              return SizedBox(
-                height: 200,
-                child: Center(
-                  // TODO : Abstract form from scaffold
-                  child: Form(
-                    key: formKey,
-                    child: Column(
-                      children: [
-                        TextFormField(
-                          decoration: const InputDecoration(
-                            // TODO : Make the color of the hint text grey.
-                            hintText: 'New task',
-                          ),
-                          onSaved: (newTask) {
-                            setState(() {
-                              _tasks.add(newTask);
-                            });
-                          },
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Flexible(
-                              child: IconButton(
-                                  onPressed:() => 0,
-                                  icon: const Icon(Icons.access_time)
-                              ),
-                            ),
-                            Flexible(
-                              child: IconButton(
-                                  onPressed:() => 0,
-                                  icon: const Icon(Icons.delete)
-                              ),
-                            ),
-                            Flexible(
-                              child: ElevatedButton(
-                                child: const Text('Save'),
-                                onPressed: () {
-                                  if (formKey.currentState?.validate() == true) {
-                                    formKey.currentState?.save();
-                                  }
-
-                                  Navigator.pop(context);
-                                },
-                              )
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              );
-            }
-          );
-        },
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      floatingActionButton: AddItemButton(
+        formKey: formKey,
+        hintString: 'New task',
+        addFunction: _addTask,
       ),
     );
   }
@@ -135,4 +73,87 @@ class ItemsListVisualizer extends StatelessWidget {
           '$itemsList',
           );
   }
+}
+
+class AddItemButton extends StatelessWidget {
+  const AddItemButton({
+    super.key,
+    required this.formKey,
+    required this.hintString,
+    required this.addFunction
+  });
+
+  final GlobalKey<FormState> formKey;
+  final String hintString;
+  final void Function(String? newItem) addFunction;
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: () {
+        // TODO : Make the keyboard push the popup
+        showModalBottomSheet(
+            context: context,
+            builder: (BuildContext context) {
+              return SizedBox(
+                height: 200,
+                child: Center(
+                  child: Form(
+                    key: formKey,
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          decoration: InputDecoration(
+                            // TODO : Make the color of the hint text grey.
+                            hintText: hintString,
+                          ),
+                          onSaved: (newItem) => addFunction(newItem),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Flexible(
+                              child: IconButton(
+                                  onPressed:() => 0,
+                                  icon: const Icon(Icons.access_time)
+                              ),
+                            ),
+                            Flexible(
+                              child: IconButton(
+                                  onPressed:() => 0,
+                                  icon: const Icon(Icons.delete)
+                              ),
+                            ),
+                            Flexible(
+                                child: ElevatedButton(
+                                  child: const Text('Save'),
+                                  onPressed: () {
+                                    if (formKey.currentState?.validate() == true) {
+                                      formKey.currentState?.save();
+                                    }
+
+                                    Navigator.pop(context);
+                                  },
+                                )
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            }
+        );
+      },
+      tooltip: 'Increment',
+      child: const Icon(Icons.add),
+    );
+  }
+
+  // DatePickerDialog(
+  //   initialDate: DateTime.now(),
+  //   firstDate: DateTime.now(),
+  //   lastDate: DateTime(2024)),
+  // ,
 }
