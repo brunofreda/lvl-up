@@ -111,12 +111,16 @@ class AddItemButton extends StatelessWidget {
                             hintStyle: const TextStyle(
                               color: Colors.grey,
                             ),
+                            labelStyle: const TextStyle(
+                              color: Colors.grey
+                            ),
                           ),
                           autofocus: true,
                           onSaved: (newItem) => addFunction(newItem),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
+                          // TODO : Abstract this two buttons
                           children: [
                             Flexible(
                               child: IconButton(
