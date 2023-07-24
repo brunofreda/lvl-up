@@ -4,6 +4,7 @@ A new Flutter project.
 
 # Things the full app would have
 
+-The colors of all the widgets would be set relating them to the theme
 -Themes
 
 ## Getting Started

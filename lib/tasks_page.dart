@@ -66,7 +66,6 @@ class ItemsListVisualizer extends StatelessWidget {
     return itemsList.isEmpty
         ? const Text(
             'Tap the plus button to add a task',
-            // TODO : Set the color of the text relating it with the theme
             style: TextStyle(color: Colors.grey),
           )
         : Text(
@@ -91,11 +90,15 @@ class AddItemButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: () {
-        // TODO : Make the keyboard push the popup
         showModalBottomSheet(
-            context: context,
-            builder: (BuildContext context) {
-              return SizedBox(
+          context: context,
+          isScrollControlled: true,
+          builder: (BuildContext context) {
+            return Padding(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom
+              ),
+              child: SizedBox(
                 height: 200,
                 child: Center(
                   child: Form(
@@ -104,9 +107,12 @@ class AddItemButton extends StatelessWidget {
                       children: [
                         TextFormField(
                           decoration: InputDecoration(
-                            // TODO : Make the color of the hint text grey.
                             hintText: hintString,
+                            hintStyle: const TextStyle(
+                              color: Colors.grey,
+                            ),
                           ),
+                          autofocus: true,
                           onSaved: (newItem) => addFunction(newItem),
                         ),
                         Row(
@@ -125,16 +131,16 @@ class AddItemButton extends StatelessWidget {
                               ),
                             ),
                             Flexible(
-                                child: ElevatedButton(
-                                  child: const Text('Save'),
-                                  onPressed: () {
-                                    if (formKey.currentState?.validate() == true) {
-                                      formKey.currentState?.save();
-                                    }
+                              child: ElevatedButton(
+                                child: const Text('Save'),
+                                onPressed: () {
+                                  if (formKey.currentState?.validate() == true) {
+                                    formKey.currentState?.save();
+                                  }
 
-                                    Navigator.pop(context);
-                                  },
-                                )
+                                  Navigator.pop(context);
+                                },
+                              )
                             ),
                           ],
                         ),
@@ -142,8 +148,9 @@ class AddItemButton extends StatelessWidget {
                     ),
                   ),
                 ),
-              );
-            }
+              ),
+            );
+          }
         );
       },
       tooltip: 'Increment',
