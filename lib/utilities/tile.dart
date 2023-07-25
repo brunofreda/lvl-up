@@ -9,8 +9,12 @@ class Tile extends StatelessWidget {
   // TODO : Add edit button.
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text(tileText),
-    );
+    return Padding(
+        padding: const EdgeInsets.all(24),
+        child: Container(
+          decoration: const BoxDecoration(color: Colors.blueGrey),
+          child: Text(tileText),
+        ),
+      );
   }
 }

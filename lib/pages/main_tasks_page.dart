@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../utilities/add_item_button.dart';
 import '../utilities/items_list_visualizer.dart';
-import '../utilities/navbar.dart';
 
 class MainTasksPage extends StatefulWidget {
   const MainTasksPage({super.key});
@@ -12,12 +12,19 @@ class MainTasksPage extends StatefulWidget {
 }
 
 class _MainTasksPageState extends State<MainTasksPage> {
-  final List<String?> _mainTasks = [];
+  int points = 0;
+  final List<String?> mainTasks = [];
   final formKey = GlobalKey<FormState>();
 
-  void _addTask(newTask) {
+  void addTask(newTask) {
     setState(() {
-      _mainTasks.add(newTask);
+      mainTasks.add(newTask);
+    });
+  }
+
+  void addPoint() {
+    setState(() {
+      points++;
     });
   }
 
@@ -25,21 +32,34 @@ class _MainTasksPageState extends State<MainTasksPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Navbar(),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ItemsListVisualizer(
-                itemsList: _mainTasks,
+        title: Text(
+            'LvL Up',
+            style: GoogleFonts.notoSans(
+              fontWeight: FontWeight.w600,
             ),
-          ],
+          ),
+        centerTitle: true,
+        leading: Center(
+          child: Text(
+            '$points',
+            style: const TextStyle(fontSize: 18),
+          ),
         ),
+        // TODO : Make dialog box to choose whether to keep as scratched or
+        // TODO > delete completed tasks
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () => 0,
+          ),
+        ]
+      ),
+      body: ItemsListVisualizer(
+          itemsList: mainTasks,
       ),
       floatingActionButton: AddItemButton(
         formKey: formKey,
-        function: _addTask,
+        function: addTask,
       ),
     );
   }

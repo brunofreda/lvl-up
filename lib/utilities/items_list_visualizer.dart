@@ -10,20 +10,19 @@ class ItemsListVisualizer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return itemsList.isEmpty
-        ? const Text(
-            'Tap the plus button to add a task',
-            style: TextStyle(color: Colors.grey),
-          )
+        ? const Center(
+            child: Text(
+              'Tap the plus button to add a task',
+              style: TextStyle(color: Colors.grey),
+           ),
+        )
         // TODO : Sort: By date/My order.
-        : Text(
-            '$itemsList',
+        : ListView(
+            children: [
+              Tile(
+                tileText: 'Task',
+              ),
+            ],
           );
-    // ListView(
-    //   children: [
-    //     // for (String item in itemsList) {
-    //     //   Tile(tileText: item);
-    //     // }
-    //   ],
-    // )
   }
 }

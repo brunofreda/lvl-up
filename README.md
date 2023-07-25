@@ -5,9 +5,13 @@ A new Flutter project.
 # Things the full app would have
 
 - Title logo
-- Store the data in your account, which would be synced with the webapp
-- The option to add multiple tasks page, making the corresponding abstraction from the MainTasksPage
+- Stylized points counter
+- Better transitions
+- The option to add multiple tasks pages
+- A calendar
+- Making each page an instance of a class called "Page" that contains at least the navbar
 - Themes
+- Store the data in your account, which would be synced with the webapp
 
 ## Getting Started
 
