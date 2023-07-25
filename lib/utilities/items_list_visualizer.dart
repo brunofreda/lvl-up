@@ -11,12 +11,13 @@ class ItemsListVisualizer extends StatelessWidget {
   Widget build(BuildContext context) {
     return itemsList.isEmpty
         ? const Text(
-      'Tap the plus button to add a task',
-      style: TextStyle(color: Colors.grey),
-    )
+            'Tap the plus button to add a task',
+            style: TextStyle(color: Colors.grey),
+          )
+        // TODO : Sort: By date/My order.
         : Text(
-      '$itemsList',
-    );
+            '$itemsList',
+          );
     // ListView(
     //   children: [
     //     // for (String item in itemsList) {

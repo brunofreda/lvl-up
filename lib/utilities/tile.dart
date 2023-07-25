@@ -5,6 +5,8 @@ class Tile extends StatelessWidget {
 
   final String tileText;
 
+  // TODO : Add circle button.
+  // TODO : Add edit button.
   @override
   Widget build(BuildContext context) {
     return Container(

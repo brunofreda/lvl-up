@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'pages/tasks_page.dart';
+import 'pages/main_tasks_page.dart';
 
 void main() {
   runApp(const AppWidget());
 }
 
-// TODO: Colors
 class AppWidget extends StatelessWidget {
   const AppWidget({super.key});
 
@@ -18,7 +17,7 @@ class AppWidget extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
-      home: const MainTasksPage(title: 'LvL Up'),
+      home: const MainTasksPage(),
     );
   }
 }
