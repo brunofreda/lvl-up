@@ -14,7 +14,8 @@ class MainTasksPage extends StatefulWidget {
 class _MainTasksPageState extends State<MainTasksPage> {
   int points = 0;
   final List<String?> mainTasks = [];
-  final formKey = GlobalKey<FormState>();
+  final addFormKey = GlobalKey<FormState>();
+  final editFormKey = GlobalKey<FormState>();
 
   void addTask(newTask) {
     setState(() {
@@ -58,7 +59,7 @@ class _MainTasksPageState extends State<MainTasksPage> {
           itemsList: mainTasks,
       ),
       floatingActionButton: AddItemButton(
-        formKey: formKey,
+        formKey: addFormKey,
         function: addTask,
       ),
     );

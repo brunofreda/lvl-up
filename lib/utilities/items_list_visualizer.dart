@@ -20,7 +20,14 @@ class ItemsListVisualizer extends StatelessWidget {
         : ListView(
             children: [
               Tile(
-                tileText: 'Task',
+                tileText: itemsList.last,
+                tileComplete: false,
+                onChangedValue: (p) => 0,
+              ),
+              Tile(
+                tileText: itemsList.last,
+                tileComplete: true,
+                onChangedValue: (p) => 0,
               ),
             ],
           );

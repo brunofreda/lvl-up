@@ -20,7 +20,7 @@ class AddItemButton extends StatelessWidget {
           builder: (BuildContext context) {
             return Padding(
               padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom
+                  bottom: MediaQuery.of(context).viewInsets.bottom,
               ),
               child: SizedBox(
                 height: 200,
@@ -29,45 +29,57 @@ class AddItemButton extends StatelessWidget {
                     key: formKey,
                     child: Column(
                       children: [
-                        TextFormField(
-                          decoration: const InputDecoration(
-                            hintText: 'Task',
-                            hintStyle: TextStyle(
-                              color: Colors.grey,
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(12.0, 5.0, 12.0, 5.0),
+                          child: TextFormField(
+                            decoration: const InputDecoration(
+                              hintText: 'Task',
+                              hintStyle: TextStyle(
+                                color: Colors.grey,
+                              ),
+                              labelStyle: TextStyle(
+                                  color: Colors.grey,
+                              ),
                             ),
-                            labelStyle: TextStyle(
-                                color: Colors.grey
-                            ),
+                            autofocus: true,
+                            onSaved: (newItem) => function(newItem),
                           ),
-                          autofocus: true,
-                          onSaved: (newItem) => function(newItem),
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           // TODO : Abstract the buttons for clean code.
                           children: [
                             Flexible(
-                              child: IconButton(
-                                icon: const Icon(Icons.access_time),
-                                onPressed:() => 0,
+                              child: Row(
+                                children: [
+                                  Flexible(
+                                    child: IconButton(
+                                      icon: const Icon(Icons.access_time),
+                                      onPressed:() => 0,
+                                    ),
+                                  ),
+                                  Flexible(
+                                    child: IconButton(
+                                        icon: const Icon(Icons.delete),
+                                        onPressed:() => 0,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             Flexible(
-                              child: IconButton(
-                                  icon: const Icon(Icons.delete),
-                                  onPressed:() => 0,
-                              ),
-                            ),
-                            Flexible(
-                                child: ElevatedButton(
-                                  child: const Text('Save'),
-                                  onPressed: () {
-                                    if (formKey.currentState?.validate() == true) {
-                                      formKey.currentState?.save();
-                                    }
+                                child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(8.0, 12.0, 12.0, 8.0),
+                                  child: ElevatedButton(
+                                    child: const Text('Save'),
+                                    onPressed: () {
+                                      if (formKey.currentState?.validate() == true) {
+                                        formKey.currentState?.save();
+                                      }
 
-                                    Navigator.pop(context);
-                                  },
+                                      Navigator.pop(context);
+                                    },
+                                  ),
                                 )
                               ),
                             ],
