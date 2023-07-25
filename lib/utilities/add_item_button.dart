@@ -54,14 +54,14 @@ class AddItemButton extends StatelessWidget {
                                 children: [
                                   Flexible(
                                     child: IconButton(
-                                      icon: const Icon(Icons.access_time),
-                                      onPressed:() => 0,
+                                      icon: const Icon(Icons.delete),
+                                      onPressed:() => Navigator.pop(context),
                                     ),
                                   ),
                                   Flexible(
                                     child: IconButton(
-                                        icon: const Icon(Icons.delete),
-                                        onPressed:() => 0,
+                                      icon: const Icon(Icons.access_time),
+                                      onPressed:() => 0,
                                     ),
                                   ),
                                 ],
