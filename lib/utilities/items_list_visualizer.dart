@@ -17,14 +17,16 @@ class ItemsListVisualizer extends StatelessWidget {
             ),
           )
         // TODO : Sort: By date/My order.
-        : Text('$itemsList');
-          // ListView.builder(
-          //   itemCount: itemsList.length,
-          //   itemBuilder: (context, index) {
-          //     itemText:
-          //     itemCompleted
-          //     item
-          //   },
-          // );
+        : // Text('$itemsList');
+          ListView.builder(
+            itemCount: itemsList.length,
+            itemBuilder: (context, index) {
+              return Tile(
+                tileText: itemsList[0],
+                tileComplete: itemsList[1],
+                onChangedFunction: (p0) => 0,
+              );
+            },
+          );
   }
 }
