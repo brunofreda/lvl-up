@@ -14,22 +14,17 @@ class ItemsListVisualizer extends StatelessWidget {
             child: Text(
               'Tap the plus button to add a task',
               style: TextStyle(color: Colors.grey),
-           ),
-        )
+            ),
+          )
         // TODO : Sort: By date/My order.
-        : ListView(
-            children: [
-              Tile(
-                tileText: itemsList.last,
-                tileComplete: false,
-                onChangedValue: (p) => 0,
-              ),
-              Tile(
-                tileText: itemsList.last,
-                tileComplete: true,
-                onChangedValue: (p) => 0,
-              ),
-            ],
-          );
+        : Text('$itemsList');
+          // ListView.builder(
+          //   itemCount: itemsList.length,
+          //   itemBuilder: (context, index) {
+          //     itemText:
+          //     itemCompleted
+          //     item
+          //   },
+          // );
   }
 }

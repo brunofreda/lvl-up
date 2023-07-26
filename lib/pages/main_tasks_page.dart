@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../utilities/add_item_button.dart';
 import '../utilities/items_list_visualizer.dart';
+import '../utilities/setting_check_button_option.dart';
 
 class MainTasksPage extends StatefulWidget {
   const MainTasksPage({super.key});
@@ -13,7 +14,8 @@ class MainTasksPage extends StatefulWidget {
 
 class _MainTasksPageState extends State<MainTasksPage> {
   int points = 0;
-  final List<String?> mainTasks = [];
+  bool removeTask = false;
+  final List mainTasks = [];
   final addFormKey = GlobalKey<FormState>();
   final editFormKey = GlobalKey<FormState>();
 
@@ -26,6 +28,13 @@ class _MainTasksPageState extends State<MainTasksPage> {
   void addPoint() {
     setState(() {
       points++;
+    });
+  }
+
+  void taskBehavior(bool? value) {
+    setState(() {
+      removeTask = !removeTask;
+      print(removeTask);
     });
   }
 
@@ -46,13 +55,11 @@ class _MainTasksPageState extends State<MainTasksPage> {
             style: const TextStyle(fontSize: 18),
           ),
         ),
-        // TODO : Make dialog box to choose whether to keep as scratched or
-        // TODO > delete completed tasks
         actions: [
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () => 0,
-          ),
+          SettingCheckButtonOption(
+            booleanValue: removeTask,
+            onChangedFunction: taskBehavior,
+          )
         ]
       ),
       body: ItemsListVisualizer(

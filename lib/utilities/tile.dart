@@ -5,12 +5,12 @@ class Tile extends StatelessWidget {
     super.key,
     required this.tileText,
     required this.tileComplete,
-    required this.onChangedValue
+    required this.onChangedFunction
   });
 
   final String tileText;
   final bool tileComplete;
-  Function(bool?)? onChangedValue;
+  Function(bool?)? onChangedFunction;
 
   // TODO : Add circle button and make it modify "points"
   // TODO : Add edit button.
@@ -26,7 +26,7 @@ class Tile extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Checkbox(value: tileComplete, onChanged: onChangedValue),
+              Checkbox(value: tileComplete, onChanged: onChangedFunction),
               Text(
                 tileText,
                 style: const TextStyle(

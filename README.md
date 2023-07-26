@@ -6,7 +6,9 @@ A new Flutter project.
 
 - Title logo
 - Stylized points counter
-- Better transitions
+- Improving some of the graphics and transitions
+- If the completed tasks are not set to be removed, they are set aside in a list of their own down
+  below
 - The option to add multiple tasks pages
 - A calendar
 - Making each page an instance of a class called "Page" that contains at least the navbar
