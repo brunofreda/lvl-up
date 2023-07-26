@@ -34,7 +34,6 @@ class _MainTasksPageState extends State<MainTasksPage> {
   void taskBehavior(bool? value) {
     setState(() {
       removeTask = !removeTask;
-      print(removeTask);
     });
   }
 
@@ -63,6 +62,7 @@ class _MainTasksPageState extends State<MainTasksPage> {
         ]
       ),
       body: ItemsListVisualizer(
+          removeItem: removeTask,
           itemsList: mainTasks,
       ),
       floatingActionButton: AddItemButton(

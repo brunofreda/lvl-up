@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 import '../utilities/tile.dart';
 
 class ItemsListVisualizer extends StatelessWidget {
-  const ItemsListVisualizer({super.key, required this.itemsList});
+  const ItemsListVisualizer({
+    super.key,
+    required this.removeItem,
+    required this.itemsList
+  });
 
+  bool removeItem;
   final List itemsList;
 
   @override
@@ -21,11 +26,17 @@ class ItemsListVisualizer extends StatelessWidget {
           ListView.builder(
             itemCount: itemsList.length,
             itemBuilder: (context, index) {
-              return Tile(
-                tileText: itemsList[0],
-                tileComplete: itemsList[1],
-                onChangedFunction: (p0) => 0,
-              );
+              return removeItem
+                ? Tile(
+                    tileText: itemsList[index][0],
+                    tileComplete: itemsList[index][1],
+                    onChangedFunction: (p0) => 0,
+                  )
+                : Tile(
+                    tileText: itemsList[index][0],
+                    tileComplete: itemsList[index][1],
+                    onChangedFunction: (p0) => 0,
+                  )
             },
           );
   }

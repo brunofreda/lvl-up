@@ -4,6 +4,8 @@ A new Flutter project.
 
 # Things the full app would have
 
+Client side
+
 - Title logo
 - Stylized points counter
 - Improving some of the graphics and transitions
@@ -11,9 +13,13 @@ A new Flutter project.
   below
 - The option to add multiple tasks pages
 - A calendar
-- Making each page an instance of a class called "Page" that contains at least the navbar
 - Themes
 - Store the data in your account, which would be synced with the webapp
+
+Code design
+
+- Maybe use a Map to store the tasks data instead of a List
+- Making each page an instance of a class called "Page" that contains at least the navbar
 
 ## Getting Started
 
