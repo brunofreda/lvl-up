@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../utilities/tile.dart';
 
 class ItemsListVisualizer extends StatelessWidget {
-  const ItemsListVisualizer({
+  ItemsListVisualizer({
     super.key,
     required this.removeItem,
     required this.itemsList
@@ -22,22 +22,33 @@ class ItemsListVisualizer extends StatelessWidget {
             ),
           )
         // TODO : Sort: By date/My order.
-        : // Text('$itemsList');
-          ListView.builder(
-            itemCount: itemsList.length,
-            itemBuilder: (context, index) {
-              return removeItem
-                ? Tile(
-                    tileText: itemsList[index][0],
-                    tileComplete: itemsList[index][1],
-                    onChangedFunction: (p0) => 0,
-                  )
-                : Tile(
-                    tileText: itemsList[index][0],
-                    tileComplete: itemsList[index][1],
-                    onChangedFunction: (p0) => 0,
-                  )
-            },
+        : ListView(
+            children: [
+              Tile(
+                tileText: itemsList.last,
+                tileComplete: false,
+                onChangedFunction: (p0) => 0,
+              ),
+            ],
           );
+
+          // ListView.builder(
+          //   itemCount: itemsList.length,
+          //   itemBuilder: (context, index) {
+          //     return removeItem
+          //       ? Tile(
+          //           tileText: itemsList[index][0],
+          //           tileComplete: itemsList[index][1],
+          //           onChangedFunction: (value) => 0,
+          //         )
+          //       : Tile(
+          //           tileText: itemsList[index][0],
+          //           tileComplete: itemsList[index][1],
+          //           onChangedFunction: (value) => 0,
+          //         );
+          //   },
+          // );
   }
+
+  // void checkBox
 }

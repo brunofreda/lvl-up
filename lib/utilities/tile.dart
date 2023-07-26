@@ -14,6 +14,7 @@ class Tile extends StatelessWidget {
 
   // TODO : Add circle button and make it modify "points"
   // TODO : Add edit button.
+  // TODO : Add date data
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,7 +27,12 @@ class Tile extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Checkbox(value: tileComplete, onChanged: onChangedFunction),
+              Checkbox(
+                  value: tileComplete,
+                  shape: const CircleBorder(),
+                  side: const BorderSide(color: Colors.white),
+                  onChanged: onChangedFunction
+              ),
               Text(
                 tileText,
                 style: const TextStyle(
