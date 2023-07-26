@@ -1,6 +1,6 @@
 # lvl_up
 
-A new Flutter project.
+
 
 # Things the full app would have
 
@@ -15,21 +15,10 @@ Client side
 - A calendar
 - Themes
 - Store the data in your account, which would be synced with the webapp
+- Maybe make it so you can choose to hide the completed tasks instead of deleting them
 
 Code design
 
 - Maybe use a Map to store the tasks data instead of a List
-- Making each page an instance of a class called "Page" that contains at least the navbar
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Making each page an instance of a class called "Page" that contains at least the AppBar
+- Make the scoreModifier not required

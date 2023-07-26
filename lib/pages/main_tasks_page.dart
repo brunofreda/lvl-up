@@ -13,8 +13,8 @@ class MainTasksPage extends StatefulWidget {
 }
 
 class _MainTasksPageState extends State<MainTasksPage> {
-  int points = 0;
-  bool removeTask = false;
+  int score = 0;
+  bool removeCompletedTasks = false;
   final List mainTasks = [];
   final addFormKey = GlobalKey<FormState>();
   final editFormKey = GlobalKey<FormState>();
@@ -25,15 +25,19 @@ class _MainTasksPageState extends State<MainTasksPage> {
     });
   }
 
-  void addPoint() {
+  void changeScore(bool value) {
     setState(() {
-      points++;
+      if (value) {
+        score++;
+      } else {
+        score--;
+      }
     });
   }
 
   void taskBehavior(bool? value) {
     setState(() {
-      removeTask = !removeTask;
+      removeCompletedTasks = !removeCompletedTasks;
     });
   }
 
@@ -50,20 +54,21 @@ class _MainTasksPageState extends State<MainTasksPage> {
         centerTitle: true,
         leading: Center(
           child: Text(
-            '$points',
+            '$score',
             style: const TextStyle(fontSize: 18),
           ),
         ),
         actions: [
           SettingCheckButtonOption(
-            booleanValue: removeTask,
+            booleanValue: removeCompletedTasks,
             onChangedFunction: taskBehavior,
           )
         ]
       ),
       body: ItemsListVisualizer(
-          removeItem: removeTask,
+          removeCheckedItem: removeCompletedTasks,
           itemsList: mainTasks,
+          scoreModifier: changeScore,
       ),
       floatingActionButton: AddItemButton(
         formKey: addFormKey,
