@@ -12,9 +12,6 @@ class Tile extends StatelessWidget {
   final bool tileComplete;
   Function(bool?)? onChangedFunction;
 
-  // TODO : Add circle button and make it modify "points"
-  // TODO : Add edit button.
-  // TODO : Add date data
   @override
   Widget build(BuildContext context) {
     return Padding(

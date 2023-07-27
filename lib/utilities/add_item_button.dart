@@ -47,7 +47,6 @@ class AddItemButton extends StatelessWidget {
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          // TODO : Abstract the buttons for clean code.
                           children: [
                             Flexible(
                               child: Row(
@@ -55,15 +54,15 @@ class AddItemButton extends StatelessWidget {
                                   Flexible(
                                     child: IconButton(
                                       icon: const Icon(Icons.delete),
-                                      onPressed:() => Navigator.pop(context),
+                                      onPressed: () => Navigator.pop(context),
                                     ),
                                   ),
-                                  Flexible(
-                                    child: IconButton(
-                                      icon: const Icon(Icons.access_time),
-                                      onPressed:() => 0,
-                                    ),
-                                  ),
+                                  // Flexible(
+                                  //   child: IconButton(
+                                  //     icon: const Icon(Icons.access_time),
+                                  //     onPressed:() => 0,
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),
@@ -98,8 +97,6 @@ class AddItemButton extends StatelessWidget {
     );
   }
 
-// TODO : Make date popup have the option "No date" and the date selected appear
-// TODO > aside the clock icon.
 // DatePickerDialog(
 //   initialDate: DateTime.now(),
 //   firstDate: DateTime.now(),

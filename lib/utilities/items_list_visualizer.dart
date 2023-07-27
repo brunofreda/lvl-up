@@ -25,19 +25,7 @@ class ItemsListVisualizer extends StatelessWidget {
               style: TextStyle(color: Colors.grey),
             ),
           )
-        // TODO : Sort: By date/My order.
-        :
-          // ListView(
-          //   children: [
-          //     Tile(
-          //       tileText: itemsList.last,
-          //       tileComplete: false,
-          //       onChangedFunction: (p0) => 0,
-          //     ),
-          //   ],
-          // );
-
-          ListView.builder(
+        : ListView.builder(
             itemCount: itemsList.length,
             itemBuilder: (context, index) {
               return removeCheckedItem
