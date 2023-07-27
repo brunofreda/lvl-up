@@ -49,7 +49,7 @@ class ItemsListVisualizer extends StatelessWidget {
                 : Tile(
                     tileText: itemsList[index][0],
                     tileComplete: itemsList[index][1],
-                    onChangedFunction: (value) => 0,
+                    onChangedFunction: (value) => checkBoxChanged(value, index),
                   );
             },
           );
