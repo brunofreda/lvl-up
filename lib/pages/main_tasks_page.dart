@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lvl_up/utilities/score_counter.dart';
 
 import '../utilities/add_item_button.dart';
 import '../utilities/items_list_visualizer.dart';
+import '../utilities/score_counter.dart';
 import '../utilities/setting_check_button_option.dart';
 
 class MainTasksPage extends StatefulWidget {
@@ -58,11 +60,8 @@ class _MainTasksPageState extends State<MainTasksPage> {
             ),
           ),
         centerTitle: true,
-        leading: Center(
-          child: Text(
-            '$score',
-            style: const TextStyle(fontSize: 18),
-          ),
+        leading: ScoreCounter(
+          score: score,
         ),
         actions: [
           SettingCheckButtonOption(
