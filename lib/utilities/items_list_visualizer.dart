@@ -7,16 +7,14 @@ class ItemsListVisualizer extends StatelessWidget {
     super.key,
     required this.removeCheckedItem,
     required this.itemsList,
+    required this.checkBoxChanged,
     required this.scoreModifier
   });
 
   bool removeCheckedItem;
   final List itemsList;
+  final Function(bool? value, int index) checkBoxChanged;
   final Function scoreModifier;
-
-  void checkBoxChanged(bool? value, int index) {
-    
-  }
 
   @override
   Widget build(BuildContext context) {

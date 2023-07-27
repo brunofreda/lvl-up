@@ -15,13 +15,22 @@ class MainTasksPage extends StatefulWidget {
 class _MainTasksPageState extends State<MainTasksPage> {
   int score = 0;
   bool removeCompletedTasks = false;
-  final List mainTasks = [];
+  final List mainTasks = [
+    ['Task 1', false],
+  ];
   final addFormKey = GlobalKey<FormState>();
   final editFormKey = GlobalKey<FormState>();
 
-  void addTask(newTask) {
+  void taskBehavior(bool? value) {
     setState(() {
-      mainTasks.add(newTask);
+      removeCompletedTasks = !removeCompletedTasks;
+      print(removeCompletedTasks);
+    });
+  }
+
+  void taskCheckBoxChanged(bool? value, int index) {
+    setState(() {
+      mainTasks[index][1] = !mainTasks[index][1];
     });
   }
 
@@ -35,9 +44,9 @@ class _MainTasksPageState extends State<MainTasksPage> {
     });
   }
 
-  void taskBehavior(bool? value) {
+  void addTask(newTask) {
     setState(() {
-      removeCompletedTasks = !removeCompletedTasks;
+      mainTasks.add(newTask);
     });
   }
 
@@ -68,6 +77,7 @@ class _MainTasksPageState extends State<MainTasksPage> {
       body: ItemsListVisualizer(
           removeCheckedItem: removeCompletedTasks,
           itemsList: mainTasks,
+          checkBoxChanged: taskCheckBoxChanged,
           scoreModifier: changeScore,
       ),
       floatingActionButton: AddItemButton(

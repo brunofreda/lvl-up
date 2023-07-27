@@ -31,7 +31,7 @@ class Tile extends StatelessWidget {
                   value: tileComplete,
                   shape: const CircleBorder(),
                   side: const BorderSide(color: Colors.white),
-                  onChanged: onChangedFunction
+                  onChanged: onChangedFunction,
               ),
               Text(
                 tileText,
