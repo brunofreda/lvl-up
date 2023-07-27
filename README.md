@@ -23,5 +23,4 @@ Code design
 
 - Maybe use a Map to store the tasks data instead of a List
 - Make each page an instance of a class called "Page" that contains at least the AppBar
-- Make the scoreModifier not required
 - Abstract the buttons from the add_item_button for clean code

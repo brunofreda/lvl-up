@@ -16,28 +16,26 @@ class MainTasksPage extends StatefulWidget {
 
 class _MainTasksPageState extends State<MainTasksPage> {
   int score = 0;
-  bool removeCompletedTasks = false;
+  bool hideCompletedTasks = false;
   final List mainTasksList = [
     ['Task 1', false],
+    ['Task 2', false],
+    ['Task 3', false],
   ];
   final addFormKey = GlobalKey<FormState>();
   final editFormKey = GlobalKey<FormState>();
 
   void completedTasksBehavior(bool value) {
-      removeCompletedTasks = value;
+      hideCompletedTasks = value;
   }
 
   void taskCheckBoxChanged(bool? value, int index) {
     setState(() {
       mainTasksList[index][1] = !mainTasksList[index][1];
-    });
-  }
 
-  void changeScore(bool value) {
-    setState(() {
-      if (value) {
+      if (mainTasksList[index][1] == true) {
         score++;
-      } else {
+      } else if (mainTasksList.isNotEmpty) {
         score--;
       }
     });
@@ -65,20 +63,20 @@ class _MainTasksPageState extends State<MainTasksPage> {
         ),
         actions: [
           SettingCheckButtonOption(
-            booleanValue: removeCompletedTasks,
+            booleanValue: hideCompletedTasks,
+            settingText: 'Hide completed tasks',
             onChangedFunction: completedTasksBehavior,
           ),
         ]
       ),
       body: ItemsListVisualizer(
-          removeCheckedItem: removeCompletedTasks,
+          hideCheckedItem: hideCompletedTasks,
           itemsList: mainTasksList,
           checkBoxChanged: taskCheckBoxChanged,
-          scoreModifier: changeScore,
       ),
       floatingActionButton: AddItemButton(
         formKey: addFormKey,
-        function: addTask,
+        onSavedFunction: addTask,
       ),
     );
   }

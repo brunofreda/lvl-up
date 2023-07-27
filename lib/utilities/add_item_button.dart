@@ -4,11 +4,11 @@ class AddItemButton extends StatelessWidget {
   const AddItemButton({
     super.key,
     required this.formKey,
-    required this.function
+    required this.onSavedFunction
   });
 
   final GlobalKey<FormState> formKey;
-  final void Function(String? newItem) function;
+  final void Function(String? newItem) onSavedFunction;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,12 @@ class AddItemButton extends StatelessWidget {
                     child: Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(12.0, 5.0, 12.0, 5.0),
+                          padding: const EdgeInsets.fromLTRB(
+                              12.0,
+                              5.0,
+                              12.0,
+                              5.0
+                          ),
                           child: TextFormField(
                             decoration: const InputDecoration(
                               hintText: 'Task',
@@ -42,7 +47,7 @@ class AddItemButton extends StatelessWidget {
                               ),
                             ),
                             autofocus: true,
-                            onSaved: (newItem) => function(newItem),
+                            onSaved: (newItem) => onSavedFunction(newItem),
                           ),
                         ),
                         Row(
@@ -68,11 +73,18 @@ class AddItemButton extends StatelessWidget {
                             ),
                             Flexible(
                                 child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(8.0, 12.0, 12.0, 8.0),
+                                  padding: const EdgeInsets.fromLTRB(
+                                      8.0,
+                                      12.0,
+                                      12.0,
+                                      8.0
+                                  ),
                                   child: ElevatedButton(
                                     child: const Text('Save'),
                                     onPressed: () {
-                                      if (formKey.currentState?.validate() == true) {
+                                      if
+                                      (formKey.currentState?.validate() == true)
+                                      {
                                         formKey.currentState?.save();
                                       }
 

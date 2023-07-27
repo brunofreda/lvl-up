@@ -15,7 +15,7 @@ class Tile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.fromLTRB(15.0, 17.0, 15.0, 5.0),
+        padding: const EdgeInsets.only(left: 18.0, right: 18.0, top: 18.0),
         child: Container(
           padding: const EdgeInsets.all(24.0),
           decoration: BoxDecoration(
@@ -25,15 +25,20 @@ class Tile extends StatelessWidget {
           child: Row(
             children: [
               Checkbox(
-                  value: tileComplete,
-                  shape: const CircleBorder(),
-                  side: const BorderSide(color: Colors.white),
-                  onChanged: onChangedFunction,
+                value: tileComplete,
+                shape: const CircleBorder(),
+                side: const BorderSide(color: Colors.white),
+                activeColor: Colors.white,
+                checkColor: Colors.blueGrey[200],
+                onChanged: onChangedFunction,
               ),
               Text(
                 tileText,
-                style: const TextStyle(
+                style: TextStyle(
                   color: Colors.white,
+                  decoration: tileComplete
+                    ? TextDecoration.lineThrough
+                    : TextDecoration.none,
                 ),
               ),
             ],

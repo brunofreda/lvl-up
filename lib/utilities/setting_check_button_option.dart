@@ -4,10 +4,12 @@ class SettingCheckButtonOption extends StatelessWidget {
   SettingCheckButtonOption({
     super.key,
     required this.booleanValue,
+    required this.settingText,
     required this.onChangedFunction
   });
 
   var booleanValue;
+  final String settingText;
   Function(bool) onChangedFunction;
 
   @override
@@ -15,12 +17,12 @@ class SettingCheckButtonOption extends StatelessWidget {
     return PopupMenuButton(
       itemBuilder: (context) => [
         PopupMenuItem(
-          padding: const EdgeInsets.all(1.0),
+          // padding: const EdgeInsets.all(1.0),
           child: StatefulBuilder(
             builder: (context, setState) => CheckboxListTile(
-              title: const Text(
-                'Remove task after completing it',
-                style: TextStyle(fontSize: 12),
+              title: Text(
+                settingText,
+                style: const TextStyle(fontSize: 14),
               ),
               value: booleanValue,
               onChanged: (newValue) {
