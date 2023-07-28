@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../utilities/tile.dart';
+import '../utilities/task_tile.dart';
 
-class ItemsListVisualizer extends StatelessWidget {
-  ItemsListVisualizer({
+class TasksListVisualizer extends StatelessWidget {
+  TasksListVisualizer({
     super.key,
-    required this.hideCheckedItem,
-    required this.itemsList,
+    required this.tasksList,
     required this.checkBoxChanged,
   });
 
-  bool hideCheckedItem;
-  final List itemsList;
+  final List tasksList;
   final Function(bool? value, int index) checkBoxChanged;
 
   @override
   Widget build(BuildContext context) {
-    return itemsList.isEmpty
+    return tasksList.isEmpty
         ? const Center(
             child: Text(
               'Tap the plus button to add a task',
@@ -24,11 +22,11 @@ class ItemsListVisualizer extends StatelessWidget {
             ),
           )
         : ListView.builder(
-            itemCount: itemsList.length,
+            itemCount: tasksList.length,
             itemBuilder: (context, index) {
-              return Tile(
-                tileText: itemsList[index][0],
-                tileComplete: itemsList[index][1],
+              return TaskTile(
+                taskText: tasksList[index][0],
+                taskComplete: tasksList[index][1],
                 onChangedFunction: (value) => checkBoxChanged(value, index),
               );
             },

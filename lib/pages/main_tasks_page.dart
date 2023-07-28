@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lvl_up/utilities/score_counter.dart';
 
 import '../utilities/add_item_button.dart';
-import '../utilities/items_list_visualizer.dart';
+import '../utilities/tasks_list_visualizer.dart';
 import '../utilities/score_counter.dart';
 import '../utilities/setting_check_button_option.dart';
 
@@ -69,14 +69,12 @@ class _MainTasksPageState extends State<MainTasksPage> {
           ),
         ]
       ),
-      body: ItemsListVisualizer(
-          hideCheckedItem: hideCompletedTasks,
-          itemsList: mainTasksList,
+      body: TasksListVisualizer(
+          tasksList: mainTasksList,
           checkBoxChanged: taskCheckBoxChanged,
       ),
       floatingActionButton: AddItemButton(
-        formKey: addFormKey,
-        onSavedFunction: addTask,
+
       ),
     );
   }

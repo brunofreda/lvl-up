@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class Tile extends StatelessWidget {
-  Tile({
+class TaskTile extends StatelessWidget {
+  const TaskTile({
     super.key,
-    required this.tileText,
-    required this.tileComplete,
+    required this.taskText,
+    required this.taskComplete,
     required this.onChangedFunction
   });
 
-  final String tileText;
-  final bool tileComplete;
-  Function(bool?)? onChangedFunction;
+  final String taskText;
+  final bool taskComplete;
+  final Function(bool?)? onChangedFunction;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class Tile extends StatelessWidget {
           child: Row(
             children: [
               Checkbox(
-                value: tileComplete,
+                value: taskComplete,
                 shape: const CircleBorder(),
                 side: const BorderSide(color: Colors.white),
                 activeColor: Colors.white,
@@ -33,10 +33,10 @@ class Tile extends StatelessWidget {
                 onChanged: onChangedFunction,
               ),
               Text(
-                tileText,
+                taskText,
                 style: TextStyle(
                   color: Colors.white,
-                  decoration: tileComplete
+                  decoration: taskComplete
                     ? TextDecoration.lineThrough
                     : TextDecoration.none,
                 ),
