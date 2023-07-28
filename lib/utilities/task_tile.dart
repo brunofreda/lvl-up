@@ -10,12 +10,12 @@ class TaskTile extends StatelessWidget {
 
   final String taskText;
   final bool taskComplete;
-  final Function(bool?)? onChangedFunction;
+  final void Function(bool?)? onChangedFunction;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.only(left: 18.0, right: 18.0, top: 18.0),
+        padding: const EdgeInsets.only(left: 18, right: 18, top: 18),
         child: Container(
           padding: const EdgeInsets.all(24.0),
           decoration: BoxDecoration(

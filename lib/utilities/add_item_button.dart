@@ -3,20 +3,27 @@ import 'package:flutter/material.dart';
 import '../utilities/dialog_box.dart';
 
 class AddItemButton extends StatelessWidget {
-  const AddItemButton({
+  AddItemButton({
     super.key,
+    required this.addItemButtonContext,
   });
+
+  final BuildContext addItemButtonContext;
+  final textController = TextEditingController();
 
   void bottomDialogBox() {
     showModalBottomSheet(
-      context: context,
+      context: addItemButtonContext,
       isScrollControlled: true,
       builder: (BuildContext context) {
         return Padding(
           padding: EdgeInsets.only(
             bottom: MediaQuery.of(context).viewInsets.bottom,
           ),
-          child: DialogBox(),
+          child: DialogBox(
+            hintString: 'Task',
+            dialogBoxTextFieldController: textController,
+          ),
         );
       }
     );

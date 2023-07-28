@@ -74,7 +74,7 @@ class _MainTasksPageState extends State<MainTasksPage> {
           checkBoxChanged: taskCheckBoxChanged,
       ),
       floatingActionButton: AddItemButton(
-
+        addItemButtonContext: context,
       ),
     );
   }

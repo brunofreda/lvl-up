@@ -10,15 +10,15 @@ class TasksListVisualizer extends StatelessWidget {
   });
 
   final List tasksList;
-  final Function(bool? value, int index) checkBoxChanged;
+  final void Function(bool? value, int index) checkBoxChanged;
 
   @override
   Widget build(BuildContext context) {
     return tasksList.isEmpty
-        ? const Center(
+        ? Center(
             child: Text(
               'Tap the plus button to add a task',
-              style: TextStyle(color: Colors.grey),
+              style: TextStyle(color: Colors.blueGrey[200]),
             ),
           )
         : ListView.builder(
