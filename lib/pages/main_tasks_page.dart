@@ -18,12 +18,10 @@ class _MainTasksPageState extends State<MainTasksPage> {
   int score = 0;
   bool hideCompletedTasks = false;
   final List mainTasksList = [
-    ['Task 1', false],
-    ['Task 2', false],
-    ['Task 3', false],
+    ['Task 1', false, ''],
+    ['Task 2', false, ''],
+    ['Task 3', false, ''],
   ];
-  final addFormKey = GlobalKey<FormState>();
-  final editFormKey = GlobalKey<FormState>();
 
   void completedTasksBehavior(bool value) {
       hideCompletedTasks = value;
@@ -75,6 +73,7 @@ class _MainTasksPageState extends State<MainTasksPage> {
       ),
       floatingActionButton: AddItemButton(
         addItemButtonContext: context,
+        itemsList: mainTasksList,
       ),
     );
   }

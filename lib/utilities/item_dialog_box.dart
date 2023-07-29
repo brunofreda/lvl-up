@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-class DialogBox extends StatelessWidget {
-  const DialogBox({
+class ItemDialogBox extends StatelessWidget {
+  const ItemDialogBox({
     super.key,
     required this.hintString,
-    required this.dialogBoxTextFieldController
+    required this.operation,
+    required this.itemDialogBoxTextFieldController,
+    required this.itemsList
   });
 
   final String hintString;
-  final dialogBoxTextFieldController;
-
-  // void onSavedFunction() {
-  //
-  // }
+  final String operation;
+  final itemDialogBoxTextFieldController;
+  final List itemsList;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class DialogBox extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(12, 5, 12, 5),
               child: TextField(
-                controller: dialogBoxTextFieldController,
+                controller: itemDialogBoxTextFieldController,
                 decoration: InputDecoration(
                   hintText: hintString,
                   hintStyle: const TextStyle(
@@ -46,15 +46,35 @@ class DialogBox extends StatelessWidget {
                       Flexible(
                         child: IconButton(
                           icon: const Icon(Icons.delete),
-                          onPressed: () => Navigator.pop(context),
+                          onPressed: () {
+                            switch (operation) {
+                              case 'add':
+
+                              case 'edit':
+
+                            }
+
+                            Navigator.pop(context);
+                          }
                         ),
                       ),
                       Flexible(
                         child: IconButton(
                           icon: const Icon(Icons.access_time),
-                          onPressed: () => 0,
+                          onPressed: () {
+                            switch (operation) {
+                              case 'add':
+
+                              case 'edit':
+                            }
+                          },
                         ),
                       ),
+                      Flexible(
+                        child: Text(
+                          itemsList[]
+                        ),
+                      )
                     ],
                   ),
                 ),

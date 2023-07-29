@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../utilities/dialog_box.dart';
+import '../utilities/item_dialog_box.dart';
 
 class AddItemButton extends StatelessWidget {
   AddItemButton({
     super.key,
     required this.addItemButtonContext,
+    required this.itemsList
   });
 
   final BuildContext addItemButtonContext;
+  final List itemsList;
   final textController = TextEditingController();
 
   void bottomDialogBox() {
@@ -20,9 +22,11 @@ class AddItemButton extends StatelessWidget {
           padding: EdgeInsets.only(
             bottom: MediaQuery.of(context).viewInsets.bottom,
           ),
-          child: DialogBox(
+          child: ItemDialogBox(
             hintString: 'Task',
-            dialogBoxTextFieldController: textController,
+            operation: 'add',
+            itemDialogBoxTextFieldController: textController,
+            itemsList: itemsList
           ),
         );
       }
