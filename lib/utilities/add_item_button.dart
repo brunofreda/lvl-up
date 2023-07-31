@@ -7,13 +7,14 @@ class AddItemButton extends StatelessWidget {
     super.key,
     required this.addItemButtonContext,
     required this.itemsList,
-    required this.itemTextController
+    required this.itemTextController,
+    required this.addButtonOnSaveFunction
   });
 
   final BuildContext addItemButtonContext;
   final List itemsList;
   final itemTextController;
-
+  final void Function()? addButtonOnSaveFunction;
 
   void bottomDialogBox() {
     showModalBottomSheet(
@@ -29,6 +30,7 @@ class AddItemButton extends StatelessWidget {
             itemDialogBoxTextFieldController: itemTextController,
             itemsList: itemsList,
             itemIndex: -1,
+            itemDialogOnSaveFunction: addButtonOnSaveFunction,
           ),
         );
       }

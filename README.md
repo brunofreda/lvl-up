@@ -28,3 +28,4 @@ Code design
 - Make each page an instance of a class called "Page" that contains at least the AppBar
 - Abstract the buttons from the add_item_button for clean code
 - See if abstract item_button de add_item_button 
+- Check which parameters (if any) set as "required" that shouldn't be required

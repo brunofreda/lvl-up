@@ -6,13 +6,15 @@ class ItemDialogBox extends StatelessWidget {
     required this.hintString,
     required this.itemDialogBoxTextFieldController,
     required this.itemsList,
-    required this.itemIndex
+    required this.itemIndex,
+    required this.itemDialogOnSaveFunction
   });
 
   final String hintString;
   final itemDialogBoxTextFieldController;
   final List itemsList;
   final int itemIndex;
+  final void Function()? itemDialogOnSaveFunction;
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +49,6 @@ class ItemDialogBox extends StatelessWidget {
                         child: IconButton(
                           icon: const Icon(Icons.delete),
                           onPressed: () {
-                            if (itemIndex > -1) {
-                              print('$itemIndex');
-                            }
-
                             Navigator.pop(context);
                           }
                         ),
@@ -59,11 +57,7 @@ class ItemDialogBox extends StatelessWidget {
                         child: IconButton(
                           icon: const Icon(Icons.access_time),
                           onPressed: () {
-
-
-                            if (itemIndex > -1) {
-                              print('$itemIndex');
-                            }
+                            Navigator.pop(context);
                           },
                         ),
                       ),
@@ -81,10 +75,8 @@ class ItemDialogBox extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(8, 12, 12, 8),
                       child: ElevatedButton(
+                        onPressed: itemDialogOnSaveFunction,
                         child: const Text('Save'),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
                       ),
                     )
                 ),

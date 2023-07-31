@@ -25,26 +25,34 @@ class TaskTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(7.0),
           ),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Checkbox(
-                value: taskComplete,
-                shape: const CircleBorder(),
-                side: const BorderSide(color: Colors.white),
-                activeColor: Colors.white,
-                checkColor: Colors.blueGrey[200],
-                onChanged: onChangedFunction,
-              ),
-              Text(
-                taskText,
-                style: TextStyle(
-                  color: Colors.white,
-                  decoration: taskComplete
-                    ? TextDecoration.lineThrough
-                    : TextDecoration.none,
-                ),
+              Row(
+                children: [
+                  Checkbox(
+                    value: taskComplete,
+                    shape: const CircleBorder(),
+                    side: const BorderSide(color: Colors.white),
+                    activeColor: Colors.white,
+                    checkColor: Colors.blueGrey[200],
+                    onChanged: onChangedFunction,
+                  ),
+                  Text(
+                    taskText,
+                    style: TextStyle(
+                      color: Colors.white,
+                      decoration: taskComplete
+                          ? TextDecoration.lineThrough
+                          : TextDecoration.none,
+                    ),
+                  ),
+                ],
               ),
               Text(
                 taskDate,
+                style: const TextStyle(
+                  color: Colors.white,
+                ),
               )
             ],
           ),

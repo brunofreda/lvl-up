@@ -20,8 +20,6 @@ class _MainTasksPageState extends State<MainTasksPage> {
   final textController = TextEditingController();
   final List mainTasksList = [
     ['Task 1', false, '31/7/2023'],
-    ['Task 2', false, ''],
-    ['Task 3', false, ''],
   ];
 
   void completedTasksBehavior(bool value) {
@@ -40,10 +38,15 @@ class _MainTasksPageState extends State<MainTasksPage> {
     });
   }
 
-  void addTask(newTask) {
+  void addTask() {
     setState(() {
-      mainTasksList.add(newTask);
+      // TODO : Set date dynamically
+      mainTasksList.add([textController.text, false, '']);
+
+      textController.clear();
     });
+
+    Navigator.pop(context);
   }
 
   @override
@@ -76,6 +79,7 @@ class _MainTasksPageState extends State<MainTasksPage> {
         addItemButtonContext: context,
         itemsList: mainTasksList,
         itemTextController: textController,
+        addButtonOnSaveFunction: addTask,
       ),
     );
   }
