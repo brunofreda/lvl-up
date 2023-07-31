@@ -27,6 +27,7 @@ class TasksListVisualizer extends StatelessWidget {
               return TaskTile(
                 taskText: tasksList[index][0],
                 taskComplete: tasksList[index][1],
+                taskDate: tasksList[index][2],
                 onChangedFunction: (value) => checkBoxChanged(value, index),
               );
             },

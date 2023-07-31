@@ -5,11 +5,13 @@ class TaskTile extends StatelessWidget {
     super.key,
     required this.taskText,
     required this.taskComplete,
+    required this.taskDate,
     required this.onChangedFunction
   });
 
   final String taskText;
   final bool taskComplete;
+  final String taskDate;
   final void Function(bool?)? onChangedFunction;
 
   @override
@@ -41,6 +43,9 @@ class TaskTile extends StatelessWidget {
                     : TextDecoration.none,
                 ),
               ),
+              Text(
+                taskDate,
+              )
             ],
           ),
         ),
