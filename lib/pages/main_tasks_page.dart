@@ -17,8 +17,9 @@ class MainTasksPage extends StatefulWidget {
 class _MainTasksPageState extends State<MainTasksPage> {
   int score = 0;
   bool hideCompletedTasks = false;
+  final textController = TextEditingController();
   final List mainTasksList = [
-    ['Task 1', false, ''],
+    ['Task 1', false, '31/7/2023'],
     ['Task 2', false, ''],
     ['Task 3', false, ''],
   ];
@@ -74,6 +75,7 @@ class _MainTasksPageState extends State<MainTasksPage> {
       floatingActionButton: AddItemButton(
         addItemButtonContext: context,
         itemsList: mainTasksList,
+        itemTextController: textController,
       ),
     );
   }

@@ -6,12 +6,14 @@ class AddItemButton extends StatelessWidget {
   AddItemButton({
     super.key,
     required this.addItemButtonContext,
-    required this.itemsList
+    required this.itemsList,
+    required this.itemTextController
   });
 
   final BuildContext addItemButtonContext;
   final List itemsList;
-  final textController = TextEditingController();
+  final itemTextController;
+
 
   void bottomDialogBox() {
     showModalBottomSheet(
@@ -24,9 +26,9 @@ class AddItemButton extends StatelessWidget {
           ),
           child: ItemDialogBox(
             hintString: 'Task',
-            operation: 'add',
-            itemDialogBoxTextFieldController: textController,
-            itemsList: itemsList
+            itemDialogBoxTextFieldController: itemTextController,
+            itemsList: itemsList,
+            itemIndex: -1,
           ),
         );
       }

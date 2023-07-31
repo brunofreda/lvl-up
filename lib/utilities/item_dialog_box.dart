@@ -4,15 +4,15 @@ class ItemDialogBox extends StatelessWidget {
   const ItemDialogBox({
     super.key,
     required this.hintString,
-    required this.operation,
     required this.itemDialogBoxTextFieldController,
-    required this.itemsList
+    required this.itemsList,
+    required this.itemIndex
   });
 
   final String hintString;
-  final String operation;
   final itemDialogBoxTextFieldController;
   final List itemsList;
+  final int itemIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -47,11 +47,8 @@ class ItemDialogBox extends StatelessWidget {
                         child: IconButton(
                           icon: const Icon(Icons.delete),
                           onPressed: () {
-                            switch (operation) {
-                              case 'add':
-
-                              case 'edit':
-
+                            if (itemIndex > -1) {
+                              print('$itemIndex');
                             }
 
                             Navigator.pop(context);
@@ -62,20 +59,22 @@ class ItemDialogBox extends StatelessWidget {
                         child: IconButton(
                           icon: const Icon(Icons.access_time),
                           onPressed: () {
-                            switch (operation) {
-                              case 'add':
 
-                              case 'edit':
+
+                            if (itemIndex > -1) {
+                              print('$itemIndex');
                             }
                           },
                         ),
                       ),
-                      Flexible(
-                        child: Text(
-                          itemsList[]
-                        ),
-                      )
                     ],
+                  ),
+                ),
+                Flexible(
+                  child: Text(
+                    itemIndex > -1
+                    ? itemsList[itemIndex][2]
+                    : ''
                   ),
                 ),
                 Flexible(

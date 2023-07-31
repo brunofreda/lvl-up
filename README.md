@@ -11,6 +11,8 @@ Client side
 - If the completed tasks are not set to be hidden, they are set aside in a list of their own down
   below
 - Date picker for the tasks
+- Tasks with dates set to today or tomorrow would show "today" or "tomorrow" respectively instead
+  of the date
 - The option to sort the tasks by date or by personal order by dragging the tiles 
 - Being able to sort by personal order within dates when sorting by date is selected
 - The option to add multiple tasks pages
