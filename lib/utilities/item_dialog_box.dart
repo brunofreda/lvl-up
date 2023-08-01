@@ -7,14 +7,16 @@ class ItemDialogBox extends StatelessWidget {
     required this.itemDialogBoxTextFieldController,
     required this.itemsList,
     required this.taskDate,
-    required this.itemDialogOnSaveFunction
+    required this.itemDialogSaveFunction,
+    required this.itemDialogDeleteFunction
   });
 
   final String hintString;
   final itemDialogBoxTextFieldController;
   final List itemsList;
   final String taskDate;
-  final void Function()? itemDialogOnSaveFunction;
+  final void Function()? itemDialogSaveFunction;
+  final void Function()? itemDialogDeleteFunction;
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +47,7 @@ class ItemDialogBox extends StatelessWidget {
                       Flexible(
                         child: IconButton(
                           // TODO : Make it so it asks you if are you sure to discard the task if there's whether something typed or a date selected
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
+                          onPressed: itemDialogDeleteFunction,
                           icon: const Icon(Icons.delete),
                         ),
                       ),
@@ -71,7 +71,7 @@ class ItemDialogBox extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(8, 12, 12, 8),
                     child: ElevatedButton(
-                      onPressed: itemDialogOnSaveFunction,
+                      onPressed: itemDialogSaveFunction,
                       child: const Text('Save'),
                     ),
                   )

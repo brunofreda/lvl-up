@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../utilities/discard_alert_dialog.dart';
 import '../utilities/item_dialog_box.dart';
 import '../utilities/score_counter.dart';
 import '../utilities/setting_check_button_option.dart';
@@ -17,24 +18,10 @@ class _MainTasksPageState extends State<MainTasksPage> {
   int score = 0;
   bool hideCompletedTasks = false;
   final textController = TextEditingController();
-  final List mainTasksList = [
-    ['Task 1', false, '31/7/2023'],
-  ];
+  final List mainTasksList = [];
 
   void completedTasksBehavior(bool value) {
     hideCompletedTasks = value;
-  }
-
-  void taskCheckBoxChanged(bool? value, int index) {
-    setState(() {
-      mainTasksList[index][1] = !mainTasksList[index][1];
-
-      if (mainTasksList[index][1] == true) {
-        score++;
-      } else if (mainTasksList.isNotEmpty) {
-        score--;
-      }
-    });
   }
 
   void addTask() {
@@ -59,21 +46,49 @@ class _MainTasksPageState extends State<MainTasksPage> {
         builder: (BuildContext context) {
           return Padding(
             padding: EdgeInsets.only(
-              bottom: MediaQuery
-                  .of(context)
-                  .viewInsets
-                  .bottom,
+              bottom: MediaQuery.of(context).viewInsets.bottom,
             ),
             child: ItemDialogBox(
               hintString: 'Task',
               itemDialogBoxTextFieldController: textController,
               itemsList: mainTasksList,
               taskDate: '',
-              itemDialogOnSaveFunction: addTask,
+              itemDialogSaveFunction: addTask,
+              itemDialogDeleteFunction: () => deleteItem(-1),
             ),
           );
         }
     );
+  }
+
+  void deleteItem(int taskIndex) {
+    showDialog(
+      context: context,
+      builder: (builder){
+        return DiscardAlertDialog(
+          alertText: 'Are you sure you want to discard this task?',
+          previousContext: context,
+        );
+      }
+    );
+
+    if (taskIndex > -1) {
+     setState(() {
+       mainTasksList.removeAt(taskIndex);
+     });
+    }
+  }
+
+  void taskCheckBoxChanged(bool? value, int index) {
+    setState(() {
+      mainTasksList[index][1] = !mainTasksList[index][1];
+
+      if (mainTasksList[index][1] == true) {
+        score++;
+      } else if (mainTasksList.isNotEmpty) {
+        score--;
+      }
+    });
   }
 
   void editTask(int taskIndex) {
@@ -100,7 +115,8 @@ class _MainTasksPageState extends State<MainTasksPage> {
             itemDialogBoxTextFieldController: textController,
             itemsList: mainTasksList,
             taskDate: mainTasksList[itemIndex][2], // mainTasksList[taskIndex][2],
-            itemDialogOnSaveFunction: () => editTask(itemIndex),
+            itemDialogSaveFunction: () => editTask(itemIndex),
+            itemDialogDeleteFunction: () => deleteItem(itemIndex),
           ),
         );
       }
