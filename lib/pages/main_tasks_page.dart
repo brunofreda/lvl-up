@@ -72,7 +72,7 @@ class _MainTasksPageState extends State<MainTasksPage> {
     );
   }
 
-  void editItem() {
+  void editItem(int itemIndex) {
     showDialog(
       context: context,
       builder: (builder) {
@@ -81,8 +81,7 @@ class _MainTasksPageState extends State<MainTasksPage> {
             hintString: 'Task',
             itemDialogBoxTextFieldController: textController,
             itemsList: mainTasksList,
-            // TODO : Get this value and the task text dynamically
-            taskDate: '', // mainTasksList[taskIndex][2],
+            taskDate: mainTasksList[itemIndex][2], // mainTasksList[taskIndex][2],
             // TODO : Call editTask which should dynamically edit the contents
             itemDialogOnSaveFunction: () => Navigator.pop(context),
           ),
@@ -128,7 +127,7 @@ class _MainTasksPageState extends State<MainTasksPage> {
                   taskComplete: mainTasksList[index][1],
                   taskDate: mainTasksList[index][2],
                   checkBoxOnChanged: (value) => taskCheckBoxChanged(value, index),
-                  editButtonOnPressed: editItem,
+                  editButtonOnPressed: () => editItem(index),
                 );
               },
             ),
