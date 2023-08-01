@@ -32,9 +32,6 @@ class ItemDialogBox extends StatelessWidget {
                   hintStyle: const TextStyle(
                     color: Colors.grey,
                   ),
-                  labelStyle: const TextStyle(
-                    color: Colors.grey,
-                  ),
                 ),
                 autofocus: true,
               ),

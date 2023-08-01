@@ -49,6 +49,10 @@ class _MainTasksPageState extends State<MainTasksPage> {
   }
 
   void addItem() {
+    setState(() {
+      textController.clear();
+    });
+
     showModalBottomSheet(
         context: context,
         isScrollControlled: true,
@@ -73,6 +77,11 @@ class _MainTasksPageState extends State<MainTasksPage> {
   }
 
   void editItem(int itemIndex) {
+    setState(() {
+      textController.text = mainTasksList[itemIndex][0];
+    });
+    // TODO: Make editTask clear the textController
+
     showDialog(
       context: context,
       builder: (builder) {
