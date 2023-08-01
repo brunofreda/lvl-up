@@ -8,7 +8,8 @@ class ItemDialogBox extends StatelessWidget {
     required this.itemsList,
     required this.taskDate,
     required this.itemDialogSaveFunction,
-    required this.itemDialogDeleteFunction
+    required this.itemDialogDeleteFunction,
+    required this.dateTimePickerOnPressed
   });
 
   final String hintString;
@@ -17,6 +18,7 @@ class ItemDialogBox extends StatelessWidget {
   final String taskDate;
   final void Function()? itemDialogSaveFunction;
   final void Function()? itemDialogDeleteFunction;
+  final void Function()? dateTimePickerOnPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -52,9 +54,7 @@ class ItemDialogBox extends StatelessWidget {
                       ),
                       Flexible(
                         child: IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
+                          onPressed: dateTimePickerOnPressed,
                           icon: const Icon(Icons.access_time),
                         ),
                       ),

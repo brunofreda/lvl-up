@@ -20,6 +20,7 @@ class _MainTasksPageState extends State<MainTasksPage> {
   bool hideCompletedTasks = false;
   final textController = TextEditingController();
   final List mainTasksList = [];
+  DateTime dateTimeVariable = DateTime.now();
   bool sortByDate = false;
 
   void completedTasksBehavior(bool value) {
@@ -28,11 +29,16 @@ class _MainTasksPageState extends State<MainTasksPage> {
 
   void addTask() {
     setState(() {
-      // TODO : Set date dynamically
-      mainTasksList.add([textController.text, false, '']);
+      if (dateTimeVariable == DateTime.now()){
+        mainTasksList.add([textController.text, false, '']);
+      } else {
+        mainTasksList.add([textController.text, false, dateTimeVariable.toString()]);
+      }
 
       textController.clear();
     });
+
+    print(mainTasksList);
 
     Navigator.pop(context);
   }
@@ -57,6 +63,7 @@ class _MainTasksPageState extends State<MainTasksPage> {
               taskDate: '',
               itemDialogSaveFunction: addTask,
               itemDialogDeleteFunction: () => deleteItem(-1),
+              dateTimePickerOnPressed: pickDate,
             ),
           );
         }
@@ -81,6 +88,19 @@ class _MainTasksPageState extends State<MainTasksPage> {
     }
   }
 
+  void pickDate() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2100),
+    ).then((value) {
+      setState(() {
+        dateTimeVariable = value!;
+      });
+    });
+  }
+
   void taskCheckBoxChanged(bool? value, int index) {
     setState(() {
       mainTasksList[index][1] = !mainTasksList[index][1];
@@ -96,7 +116,6 @@ class _MainTasksPageState extends State<MainTasksPage> {
   void editTask(int taskIndex) {
     setState(() {
       mainTasksList[taskIndex][0] = textController.text;
-      // TODO : Make it able to set the date
       mainTasksList[taskIndex][2] = '';
     });
 
@@ -119,6 +138,7 @@ class _MainTasksPageState extends State<MainTasksPage> {
             taskDate: mainTasksList[itemIndex][2], // mainTasksList[taskIndex][2],
             itemDialogSaveFunction: () => editTask(itemIndex),
             itemDialogDeleteFunction: () => deleteItem(itemIndex),
+            dateTimePickerOnPressed: pickDate,
           ),
         );
       }
