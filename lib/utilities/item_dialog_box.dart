@@ -6,14 +6,14 @@ class ItemDialogBox extends StatelessWidget {
     required this.hintString,
     required this.itemDialogBoxTextFieldController,
     required this.itemsList,
-    required this.itemIndex,
+    required this.taskDate,
     required this.itemDialogOnSaveFunction
   });
 
   final String hintString;
   final itemDialogBoxTextFieldController;
   final List itemsList;
-  final int itemIndex;
+  final String taskDate;
   final void Function()? itemDialogOnSaveFunction;
 
   @override
@@ -47,6 +47,7 @@ class ItemDialogBox extends StatelessWidget {
                     children: [
                       Flexible(
                         child: IconButton(
+                          // TODO : Make it so it asks you if are you sure to discard the task if there's whether something typed or a date selected
                           onPressed: () {
                             Navigator.pop(context);
                           },
@@ -66,9 +67,7 @@ class ItemDialogBox extends StatelessWidget {
                 ),
                 Flexible(
                   child: Text(
-                    itemIndex > -1
-                    ? itemsList[itemIndex][2]
-                    : ''
+                    taskDate,
                   ),
                 ),
                 Flexible(
@@ -87,9 +86,4 @@ class ItemDialogBox extends StatelessWidget {
       ),
     );
   }
-// DatePickerDialog(
-//   initialDate: DateTime.now(),
-//   firstDate: DateTime.now(),
-//   lastDate: DateTime(2024)),
-// ,
 }

@@ -22,7 +22,7 @@ class _MainTasksPageState extends State<MainTasksPage> {
   ];
 
   void completedTasksBehavior(bool value) {
-      hideCompletedTasks = value;
+    hideCompletedTasks = value;
   }
 
   void taskCheckBoxChanged(bool? value, int index) {
@@ -48,28 +48,31 @@ class _MainTasksPageState extends State<MainTasksPage> {
     Navigator.pop(context);
   }
 
-  void createTask() {
+  void addItem() {
     showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      builder: (BuildContext context) {
-        return Padding(
-          padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).viewInsets.bottom,
-          ),
-          child: ItemDialogBox(
-            hintString: 'Task',
-            itemDialogBoxTextFieldController: textController,
-            itemsList: mainTasksList,
-            itemIndex: -1,
-            itemDialogOnSaveFunction: addTask,
-          ),
-        );
-      }
+        context: context,
+        isScrollControlled: true,
+        builder: (BuildContext context) {
+          return Padding(
+            padding: EdgeInsets.only(
+              bottom: MediaQuery
+                  .of(context)
+                  .viewInsets
+                  .bottom,
+            ),
+            child: ItemDialogBox(
+              hintString: 'Task',
+              itemDialogBoxTextFieldController: textController,
+              itemsList: mainTasksList,
+              taskDate: '',
+              itemDialogOnSaveFunction: addTask,
+            ),
+          );
+        }
     );
   }
 
-  void editTask() {
+  void editItem() {
     showDialog(
       context: context,
       builder: (builder) {
@@ -78,8 +81,9 @@ class _MainTasksPageState extends State<MainTasksPage> {
             hintString: 'Task',
             itemDialogBoxTextFieldController: textController,
             itemsList: mainTasksList,
-            // TODO : Get this value dynamically
-            itemIndex: 0,
+            // TODO : Get this value and the task text dynamically
+            taskDate: '', // mainTasksList[taskIndex][2],
+            // TODO : Call editTask which should dynamically edit the contents
             itemDialogOnSaveFunction: () => Navigator.pop(context),
           ),
         );
@@ -124,12 +128,12 @@ class _MainTasksPageState extends State<MainTasksPage> {
                   taskComplete: mainTasksList[index][1],
                   taskDate: mainTasksList[index][2],
                   checkBoxOnChanged: (value) => taskCheckBoxChanged(value, index),
-                  editButtonOnPressed: editTask,
+                  editButtonOnPressed: editItem,
                 );
               },
             ),
       floatingActionButton: FloatingActionButton(
-        onPressed: createTask,
+        onPressed: addItem,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
