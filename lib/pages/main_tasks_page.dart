@@ -20,6 +20,7 @@ class _MainTasksPageState extends State<MainTasksPage> {
   bool hideCompletedTasks = false;
   final textController = TextEditingController();
   final List mainTasksList = [];
+  bool sortByDate = false;
 
   void completedTasksBehavior(bool value) {
     hideCompletedTasks = value;
@@ -155,12 +156,21 @@ class _MainTasksPageState extends State<MainTasksPage> {
             )
           : Column(
             children: [
-              TextButton.icon(
-                onPressed: () {},
-                label: Text(
-                  'My order',
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: TextButton.icon(
+                  onPressed: () {
+                    setState(() {
+                      sortByDate = !sortByDate;
+                    });
+                  },
+                  label: Text(
+                    sortByDate
+                    ? 'Date'
+                    : 'My order'
+                  ),
+                  icon: const Icon(Icons.sort),
                 ),
-                icon: const Icon(Icons.sort),
               ),
               Expanded(
                 child: ItemsListView(
