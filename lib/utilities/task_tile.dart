@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 
+import 'item_dialog_box.dart';
+
 class TaskTile extends StatelessWidget {
   const TaskTile({
     super.key,
     required this.taskText,
     required this.taskComplete,
     required this.taskDate,
-    required this.onChangedFunction
+    required this.checkBoxOnChangedFunction,
+    required this.editButtonOnPressedFunction
   });
 
   final String taskText;
   final bool taskComplete;
   final String taskDate;
-  final void Function(bool?)? onChangedFunction;
+  final void Function(bool?)? checkBoxOnChangedFunction;
+  final void Function()? editButtonOnPressedFunction;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +39,7 @@ class TaskTile extends StatelessWidget {
                     side: const BorderSide(color: Colors.white),
                     activeColor: Colors.white,
                     checkColor: Colors.blueGrey[200],
-                    onChanged: onChangedFunction,
+                    onChanged: checkBoxOnChangedFunction,
                   ),
                   Text(
                     taskText,
@@ -48,11 +52,19 @@ class TaskTile extends StatelessWidget {
                   ),
                 ],
               ),
-              Text(
-                taskDate,
-                style: const TextStyle(
-                  color: Colors.white,
-                ),
+              Row(
+                children: [
+                  Text(
+                    taskDate,
+                    style: const TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: editButtonOnPressedFunction,
+                    icon: const Icon(Icons.edit),
+                  )
+                ],
               )
             ],
           ),

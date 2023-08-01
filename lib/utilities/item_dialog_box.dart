@@ -47,18 +47,18 @@ class ItemDialogBox extends StatelessWidget {
                     children: [
                       Flexible(
                         child: IconButton(
-                          icon: const Icon(Icons.delete),
                           onPressed: () {
                             Navigator.pop(context);
-                          }
+                          },
+                          icon: const Icon(Icons.delete),
                         ),
                       ),
                       Flexible(
                         child: IconButton(
-                          icon: const Icon(Icons.access_time),
                           onPressed: () {
                             Navigator.pop(context);
                           },
+                          icon: const Icon(Icons.access_time),
                         ),
                       ),
                     ],

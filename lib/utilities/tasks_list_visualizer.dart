@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
-import '../utilities/task_tile.dart';
+import 'task_tile.dart';
 
 class TasksListVisualizer extends StatelessWidget {
   TasksListVisualizer({
     super.key,
     required this.tasksList,
-    required this.checkBoxChanged,
+    required this.checkBoxOnChanged,
+    required this.editButtonOnPressed
   });
 
   final List tasksList;
-  final void Function(bool? value, int index) checkBoxChanged;
+  final void Function(bool? value, int index) checkBoxOnChanged;
+  final void Function()? editButtonOnPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,8 @@ class TasksListVisualizer extends StatelessWidget {
                 taskText: tasksList[index][0],
                 taskComplete: tasksList[index][1],
                 taskDate: tasksList[index][2],
-                onChangedFunction: (value) => checkBoxChanged(value, index),
+                checkBoxOnChangedFunction: (value) => checkBoxOnChanged(value, index),
+                editButtonOnPressedFunction: editButtonOnPressed,
               );
             },
           );

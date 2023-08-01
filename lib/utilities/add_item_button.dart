@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utilities/item_dialog_box.dart';
+import 'item_dialog_box.dart';
 
 class AddItemButton extends StatelessWidget {
   AddItemButton({
