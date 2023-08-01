@@ -76,11 +76,20 @@ class _MainTasksPageState extends State<MainTasksPage> {
     );
   }
 
+  void editTask(int taskIndex) {
+    setState(() {
+      mainTasksList[taskIndex][0] = textController.text;
+      // TODO : Make it able to set the date
+      mainTasksList[taskIndex][2] = '';
+    });
+
+    Navigator.pop(context);
+  }
+
   void editItem(int itemIndex) {
     setState(() {
       textController.text = mainTasksList[itemIndex][0];
     });
-    // TODO: Make editTask clear the textController
 
     showDialog(
       context: context,
@@ -91,8 +100,7 @@ class _MainTasksPageState extends State<MainTasksPage> {
             itemDialogBoxTextFieldController: textController,
             itemsList: mainTasksList,
             taskDate: mainTasksList[itemIndex][2], // mainTasksList[taskIndex][2],
-            // TODO : Call editTask which should dynamically edit the contents
-            itemDialogOnSaveFunction: () => Navigator.pop(context),
+            itemDialogOnSaveFunction: () => editTask(itemIndex),
           ),
         );
       }
