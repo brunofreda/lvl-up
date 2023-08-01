@@ -72,13 +72,13 @@ class ItemDialogBox extends StatelessWidget {
                   ),
                 ),
                 Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(8, 12, 12, 8),
-                      child: ElevatedButton(
-                        onPressed: itemDialogOnSaveFunction,
-                        child: const Text('Save'),
-                      ),
-                    )
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(8, 12, 12, 8),
+                    child: ElevatedButton(
+                      onPressed: itemDialogOnSaveFunction,
+                      child: const Text('Save'),
+                    ),
+                  )
                 ),
               ],
             ),

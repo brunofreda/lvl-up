@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../utilities/add_item_button.dart';
 import '../utilities/item_dialog_box.dart';
-import '../utilities/tasks_list_visualizer.dart';
 import '../utilities/score_counter.dart';
 import '../utilities/setting_check_button_option.dart';
+import '../utilities/task_tile.dart';
 
 class MainTasksPage extends StatefulWidget {
   const MainTasksPage({super.key});
@@ -74,13 +73,15 @@ class _MainTasksPageState extends State<MainTasksPage> {
     showDialog(
       context: context,
       builder: (builder) {
-        return ItemDialogBox(
-          hintString: 'Task',
-          itemDialogBoxTextFieldController: textController,
-          itemsList: mainTasksList,
-          // TODO : Get this value dynamically
-          itemIndex: 0,
-          itemDialogOnSaveFunction: () => Navigator.pop(context),
+        return AlertDialog(
+          content: ItemDialogBox(
+            hintString: 'Task',
+            itemDialogBoxTextFieldController: textController,
+            itemsList: mainTasksList,
+            // TODO : Get this value dynamically
+            itemIndex: 0,
+            itemDialogOnSaveFunction: () => Navigator.pop(context),
+          ),
         );
       }
     );
@@ -108,16 +109,30 @@ class _MainTasksPageState extends State<MainTasksPage> {
           ),
         ]
       ),
-      body: TasksListVisualizer(
-        tasksList: mainTasksList,
-        checkBoxOnChanged: taskCheckBoxChanged,
-        editButtonOnPressed: editTask,
-      ),
+      body: mainTasksList.isEmpty
+          ? Center(
+              child: Text(
+                'Tap the plus button to add a task',
+                style: TextStyle(color: Colors.blueGrey[200]),
+              ),
+            )
+          : ListView.builder(
+              itemCount: mainTasksList.length,
+              itemBuilder: (context, index) {
+                return TaskTile(
+                  taskText: mainTasksList[index][0],
+                  taskComplete: mainTasksList[index][1],
+                  taskDate: mainTasksList[index][2],
+                  checkBoxOnChanged: (value) => taskCheckBoxChanged(value, index),
+                  editButtonOnPressed: editTask,
+                );
+              },
+            ),
       floatingActionButton: FloatingActionButton(
         onPressed: createTask,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      );
+      ),
     );
   }
 }

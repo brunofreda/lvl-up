@@ -8,15 +8,15 @@ class TaskTile extends StatelessWidget {
     required this.taskText,
     required this.taskComplete,
     required this.taskDate,
-    required this.checkBoxOnChangedFunction,
-    required this.editButtonOnPressedFunction
+    required this.checkBoxOnChanged,
+    required this.editButtonOnPressed
   });
 
   final String taskText;
   final bool taskComplete;
   final String taskDate;
-  final void Function(bool?)? checkBoxOnChangedFunction;
-  final void Function()? editButtonOnPressedFunction;
+  final void Function(bool?)? checkBoxOnChanged;
+  final void Function()? editButtonOnPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class TaskTile extends StatelessWidget {
                     side: const BorderSide(color: Colors.white),
                     activeColor: Colors.white,
                     checkColor: Colors.blueGrey[200],
-                    onChanged: checkBoxOnChangedFunction,
+                    onChanged: checkBoxOnChanged,
                   ),
                   Text(
                     taskText,
@@ -52,8 +52,6 @@ class TaskTile extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
-                children: [
                   Text(
                     taskDate,
                     style: const TextStyle(
@@ -61,11 +59,10 @@ class TaskTile extends StatelessWidget {
                     ),
                   ),
                   IconButton(
-                    onPressed: editButtonOnPressedFunction,
+                    onPressed: editButtonOnPressed,
                     icon: const Icon(Icons.edit),
+                    color: Colors.white,
                   )
-                ],
-              )
             ],
           ),
         ),
