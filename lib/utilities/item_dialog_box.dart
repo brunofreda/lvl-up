@@ -46,7 +46,6 @@ class ItemDialogBox extends StatelessWidget {
                     children: [
                       Flexible(
                         child: IconButton(
-                          // TODO : Make it so it asks you if are you sure to discard the task if there's whether something typed or a date selected
                           onPressed: itemDialogDeleteFunction,
                           icon: const Icon(Icons.delete),
                         ),

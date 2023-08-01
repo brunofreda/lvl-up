@@ -10,11 +10,8 @@ Client side
 - Icon next to the score counter
 - If the completed tasks are not set to be hidden, they are set aside in a list of their own down
   below
-- Date picker for the tasks
 - Tasks with dates set to today or tomorrow would show "today" or "tomorrow" respectively instead
   of the date
-- The option to sort the tasks by date or by personal order by dragging the tiles 
-- Being able to sort by personal order within dates when sorting by date is selected
 - The option to add multiple tasks pages
 - Events
 - A calendar
@@ -26,6 +23,4 @@ Code design
 
 - Maybe use a Map to store the tasks data instead of a List
 - Make each page an instance of a class called "Page" that contains at least the AppBar
-- Abstract the buttons from the add_item_button for clean code
-- See if abstract item_button de add_item_button 
-- Check which parameters (if any) set as "required" that shouldn't be required
+- Check which class fields (if any) are set as "required" but shouldn't be

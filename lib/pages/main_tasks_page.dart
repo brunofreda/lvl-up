@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lvl_up/utilities/items_list_view.dart';
 
 import '../utilities/discard_alert_dialog.dart';
 import '../utilities/item_dialog_box.dart';
@@ -152,18 +153,36 @@ class _MainTasksPageState extends State<MainTasksPage> {
                 style: TextStyle(color: Colors.blueGrey[200]),
               ),
             )
-          : ListView.builder(
-              itemCount: mainTasksList.length,
-              itemBuilder: (context, index) {
-                return TaskTile(
-                  taskText: mainTasksList[index][0],
-                  taskComplete: mainTasksList[index][1],
-                  taskDate: mainTasksList[index][2],
-                  checkBoxOnChanged: (value) => taskCheckBoxChanged(value, index),
-                  editButtonOnPressed: () => editItem(index),
-                );
-              },
-            ),
+          : Column(
+            children: [
+              TextButton.icon(
+                onPressed: () {},
+                label: Text(
+                  'My order',
+                ),
+                icon: const Icon(Icons.sort),
+              ),
+              Expanded(
+                child: ItemsListView(
+                  itemsList: mainTasksList,
+                  itemCheckBoxChanged: taskCheckBoxChanged,
+                  itemEditButtonOnPressed: editItem,
+                ),
+              ),
+            ],
+          ),
+          // ListView.builder(
+          //   itemCount: mainTasksList.length,
+          //   itemBuilder: (context, index) {
+          //     return TaskTile(
+          //       taskText: mainTasksList[index][0],
+          //       taskComplete: mainTasksList[index][1],
+          //       taskDate: mainTasksList[index][2],
+          //       checkBoxOnChanged: (value) => taskCheckBoxChanged(value, index),
+          //       editButtonOnPressed: () => editItem(index),
+          //     );
+          //   },
+          // ),
       floatingActionButton: FloatingActionButton(
         onPressed: addItem,
         tooltip: 'Increment',
