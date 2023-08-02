@@ -14,9 +14,9 @@ that LvL Up was born! A full fledged app which this is just a prototype of. The 
 incorporated, which gives sense to the name of the app, is a gamifying aspect: completed tasks give
 you points!
 
-Here is a full list of its main features:
+# Features
 
-- 
+-
 
 # Things the full app would have
 
