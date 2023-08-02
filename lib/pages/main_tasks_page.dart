@@ -53,6 +53,8 @@ class _MainTasksPageState extends State<MainTasksPage> {
   void addItem() {
     setState(() {
       textController.clear();
+
+      dateText = '';
     });
 
     showModalBottomSheet(
@@ -146,6 +148,8 @@ class _MainTasksPageState extends State<MainTasksPage> {
   void editItem(int itemIndex) {
     setState(() {
       textController.text = mainTasksList[itemIndex][0];
+
+      dateText = mainTasksList[itemIndex][2];
     });
 
     showDialog(
