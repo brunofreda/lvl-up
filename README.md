@@ -4,15 +4,17 @@ Welcome to the LvL Up app!
 
 This is a fully functional gamified to do list app.
 
-Its main inspiration was Google Tasks, an app that I use daily, but which lacked some features that
-I would have loved to see in such app. These features were mainly two: being able to have a personal 
-order for the tasks even when you select to sort them by date, and being able to hide completed
-tasks instead of accumulating them in a separate section.
+Its main inspiration was Google Tasks, an app that I use daily, but in which some functionalities
+were lacking in some way for me. The features I would have loved to see in such app were mainly two:
+being able to have a personal order for the tasks even when you select to sort them by date, and
+being able to hide completed tasks instead of accumulating them in a separate section.
 
-So I tried to recreate something similar to Google Tasks but incorporating these features, and from
-that LvL Up was born! A full fledged app which this is just a prototype of. The other feature I
-incorporated, which gives sense to the name of the app, is a gamifying aspect: completed tasks give
-you points!
+So I tried to recreate something similar to Google Tasks but incorporating these features. But then
+I started thinking what else I would like to see in a to do list app. What if completing tasks could
+be gamified? And from that LvL Up was born! A full fledged to do list app, which this is just a
+prototype of, which would have all sorts of gamifying features. For now, the only feature of this
+sort that I incorporated is that completed tasks give you points. Below there's a full list of the
+features of this version of the app.
 
 # Features
 
