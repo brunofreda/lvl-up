@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lvl_up/utilities/items_list_view.dart';
+import 'package:intl/intl.dart';
 
 import '../utilities/discard_alert_dialog.dart';
 import '../utilities/item_dialog_box.dart';
+import '../utilities/items_list_view.dart';
 import '../utilities/score_counter.dart';
 import '../utilities/setting_check_button_option.dart';
-import '../utilities/task_tile.dart';
 
 class MainTasksPage extends StatefulWidget {
   const MainTasksPage({super.key});
@@ -21,6 +21,7 @@ class _MainTasksPageState extends State<MainTasksPage> {
   final textController = TextEditingController();
   final List mainTasksList = [];
   DateTime dateTimeVariable = DateTime.now();
+  bool datePicked = false;
   bool sortByDate = false;
 
   void completedTasksBehavior(bool value) {
@@ -29,16 +30,20 @@ class _MainTasksPageState extends State<MainTasksPage> {
 
   void addTask() {
     setState(() {
-      if (dateTimeVariable == DateTime.now()){
+      if (!datePicked){
         mainTasksList.add([textController.text, false, '']);
       } else {
-        mainTasksList.add([textController.text, false, dateTimeVariable.toString()]);
+        mainTasksList.add([
+          textController.text,
+          false,
+          DateFormat('dd/MM/yyyy').format(dateTimeVariable)
+        ]);
       }
 
       textController.clear();
     });
 
-    print(mainTasksList);
+    datePicked = false;
 
     Navigator.pop(context);
   }
@@ -99,6 +104,8 @@ class _MainTasksPageState extends State<MainTasksPage> {
         dateTimeVariable = value!;
       });
     });
+
+    datePicked = true;
   }
 
   void taskCheckBoxChanged(bool? value, int index) {
@@ -215,7 +222,7 @@ class _MainTasksPageState extends State<MainTasksPage> {
           // ),
       floatingActionButton: FloatingActionButton(
         onPressed: addItem,
-        tooltip: 'Increment',
+        tooltip: 'Add task',
         child: const Icon(Icons.add),
       ),
     );
