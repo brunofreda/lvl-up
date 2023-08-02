@@ -21,7 +21,9 @@ class _MainTasksPageState extends State<MainTasksPage> {
   final textController = TextEditingController();
   final List mainTasksList = [];
   DateTime dateTimeVariable = DateTime.now();
+  String dateText = '';
   bool datePicked = false;
+  final GlobalKey dateTextGlobalKey = GlobalKey();
   bool sortByDate = false;
 
   void completedTasksBehavior(bool value) {
@@ -65,7 +67,8 @@ class _MainTasksPageState extends State<MainTasksPage> {
               hintString: 'Task',
               itemDialogBoxTextFieldController: textController,
               itemsList: mainTasksList,
-              taskDate: '',
+              taskDate: dateText,
+              dateTextKey: dateTextGlobalKey,
               itemDialogSaveFunction: addTask,
               itemDialogDeleteFunction: () => deleteItem(-1),
               dateTimePickerOnPressed: pickDate,
@@ -102,6 +105,12 @@ class _MainTasksPageState extends State<MainTasksPage> {
     ).then((value) {
       setState(() {
         dateTimeVariable = value!;
+
+        if (dateTextGlobalKey.currentState != null && dateTextGlobalKey.currentState!.mounted) {
+          dateTextGlobalKey.currentState!.setState(() {
+            dateText = DateFormat('dd/MM/yyyy').format(dateTimeVariable);
+          });
+        }
       });
     });
 
@@ -123,8 +132,13 @@ class _MainTasksPageState extends State<MainTasksPage> {
   void editTask(int taskIndex) {
     setState(() {
       mainTasksList[taskIndex][0] = textController.text;
-      mainTasksList[taskIndex][2] = '';
+
+      if (datePicked) {
+        mainTasksList[taskIndex][2] = DateFormat('dd/MM/yyyy').format(dateTimeVariable);
+      }
     });
+
+    datePicked = false;
 
     Navigator.pop(context);
   }
@@ -142,7 +156,8 @@ class _MainTasksPageState extends State<MainTasksPage> {
             hintString: 'Task',
             itemDialogBoxTextFieldController: textController,
             itemsList: mainTasksList,
-            taskDate: mainTasksList[itemIndex][2], // mainTasksList[taskIndex][2],
+            taskDate: dateText, // mainTasksList[taskIndex][2],
+            dateTextKey: dateTextGlobalKey,
             itemDialogSaveFunction: () => editTask(itemIndex),
             itemDialogDeleteFunction: () => deleteItem(itemIndex),
             dateTimePickerOnPressed: pickDate,

@@ -7,6 +7,7 @@ class ItemDialogBox extends StatelessWidget {
     required this.itemDialogBoxTextFieldController,
     required this.itemsList,
     required this.taskDate,
+    required this.dateTextKey,
     required this.itemDialogSaveFunction,
     required this.itemDialogDeleteFunction,
     required this.dateTimePickerOnPressed
@@ -16,6 +17,7 @@ class ItemDialogBox extends StatelessWidget {
   final itemDialogBoxTextFieldController;
   final List itemsList;
   final String taskDate;
+  final GlobalKey dateTextKey;
   final void Function()? itemDialogSaveFunction;
   final void Function()? itemDialogDeleteFunction;
   final void Function()? dateTimePickerOnPressed;
@@ -62,9 +64,14 @@ class ItemDialogBox extends StatelessWidget {
                   ),
                 ),
                 Flexible(
-                  child: Text(
-                    taskDate,
-                  ),
+                  child: StatefulBuilder(
+                    key: dateTextKey,
+                    builder: (context, setState) {
+                      return Text(
+                        taskDate
+                      );
+                    }
+                  )
                 ),
                 Flexible(
                   child: Padding(
