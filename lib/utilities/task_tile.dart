@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TaskTile extends StatelessWidget {
   const TaskTile({
@@ -6,13 +7,15 @@ class TaskTile extends StatelessWidget {
     required this.taskText,
     required this.taskComplete,
     required this.taskDate,
+    required this.taskDatePicked,
     required this.checkBoxOnChanged,
     required this.editButtonOnPressed
   });
 
   final String taskText;
   final bool taskComplete;
-  final String taskDate;
+  final DateTime taskDate;
+  final bool taskDatePicked;
   final void Function(bool?)? checkBoxOnChanged;
   final void Function()? editButtonOnPressed;
 
@@ -51,10 +54,12 @@ class TaskTile extends StatelessWidget {
                 ],
               ),
                   Text(
-                    taskDate,
-                    style: const TextStyle(
-                      color: Colors.white,
-                    ),
+                    taskDatePicked
+                      ? DateFormat('dd/MM/yyyy').format(taskDate)
+                      : '',
+                      style: const TextStyle(
+                        color: Colors.white,
+                      ),
                   ),
                   IconButton(
                     onPressed: editButtonOnPressed,

@@ -33,12 +33,18 @@ class _MainTasksPageState extends State<MainTasksPage> {
   void addTask() {
     setState(() {
       if (!datePicked){
-        mainTasksList.add([textController.text, false, '']);
+        mainTasksList.add([
+          textController.text,
+          false,
+          dateTimeVariable,
+          false
+        ]);
       } else {
         mainTasksList.add([
           textController.text,
           false,
-          DateFormat('dd/MM/yyyy').format(dateTimeVariable)
+          dateTimeVariable,
+          true
         ]);
       }
 
@@ -171,6 +177,18 @@ class _MainTasksPageState extends State<MainTasksPage> {
     );
   }
 
+  void updateTiles(int oldIndex, int newIndex) {
+    setState(() {
+      if (oldIndex < newIndex) {
+        newIndex--;
+      }
+
+      final tile = mainTasksList.removeAt(oldIndex);
+
+      mainTasksList.insert(newIndex, tile);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -223,22 +241,11 @@ class _MainTasksPageState extends State<MainTasksPage> {
                   itemsList: mainTasksList,
                   itemCheckBoxChanged: taskCheckBoxChanged,
                   itemEditButtonOnPressed: editItem,
+                  updateTilesFunction: updateTiles,
                 ),
               ),
             ],
           ),
-          // ListView.builder(
-          //   itemCount: mainTasksList.length,
-          //   itemBuilder: (context, index) {
-          //     return TaskTile(
-          //       taskText: mainTasksList[index][0],
-          //       taskComplete: mainTasksList[index][1],
-          //       taskDate: mainTasksList[index][2],
-          //       checkBoxOnChanged: (value) => taskCheckBoxChanged(value, index),
-          //       editButtonOnPressed: () => editItem(index),
-          //     );
-          //   },
-          // ),
       floatingActionButton: FloatingActionButton(
         onPressed: addItem,
         tooltip: 'Add task',
