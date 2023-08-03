@@ -32,18 +32,33 @@ class _MainTasksPageState extends State<MainTasksPage> {
 
   void addTask() {
     setState(() {
+      // if (!datePicked){
+      //   mainTasksList.add([
+      //     textController.text,
+      //     false,
+      //     dateTimeVariable,
+      //     false
+      //   ]);
+      // } else {
+      //   mainTasksList.add([
+      //     textController.text,
+      //     false,
+      //     dateTimeVariable,
+      //     true
+      //   ]);
+      // }
       if (!datePicked){
         mainTasksList.add([
           textController.text,
           false,
-          dateTimeVariable,
+          DateFormat('yyyy-MM-dd').format(dateTimeVariable),
           false
         ]);
       } else {
         mainTasksList.add([
           textController.text,
           false,
-          dateTimeVariable,
+          DateFormat('yyyy-MM-dd').format(dateTimeVariable),
           true
         ]);
       }
@@ -116,7 +131,8 @@ class _MainTasksPageState extends State<MainTasksPage> {
 
         if (dateTextGlobalKey.currentState != null && dateTextGlobalKey.currentState!.mounted) {
           dateTextGlobalKey.currentState!.setState(() {
-            dateText = DateFormat('dd/MM/yyyy').format(dateTimeVariable);
+            // dateText = DateFormat('dd/MM/yyyy').format(dateTimeVariable);
+            dateText = DateFormat('yyyy-MM-dd').format(dateTimeVariable);
           });
         }
       });
@@ -142,7 +158,8 @@ class _MainTasksPageState extends State<MainTasksPage> {
       mainTasksList[taskIndex][0] = textController.text;
 
       if (datePicked) {
-        mainTasksList[taskIndex][2] = DateFormat('dd/MM/yyyy').format(dateTimeVariable);
+        // mainTasksList[taskIndex][2] = DateFormat('dd/MM/yyyy').format(dateTimeVariable);
+        mainTasksList[taskIndex][2] = DateFormat('yyyy-MM-dd').format(dateTimeVariable);
       }
     });
 
@@ -239,6 +256,7 @@ class _MainTasksPageState extends State<MainTasksPage> {
               Expanded(
                 child: ItemsListView(
                   itemsList: mainTasksList,
+                  isSortByDate: sortByDate,
                   itemCheckBoxChanged: taskCheckBoxChanged,
                   itemEditButtonOnPressed: editItem,
                   updateTilesFunction: updateTiles,

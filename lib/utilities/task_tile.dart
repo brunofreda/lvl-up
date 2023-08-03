@@ -14,7 +14,8 @@ class TaskTile extends StatelessWidget {
 
   final String taskText;
   final bool taskComplete;
-  final DateTime taskDate;
+  // final DateTime taskDate;
+  final String taskDate;
   final bool taskDatePicked;
   final void Function(bool?)? checkBoxOnChanged;
   final void Function()? editButtonOnPressed;
@@ -46,6 +47,7 @@ class TaskTile extends StatelessWidget {
                     taskText,
                     style: TextStyle(
                       color: Colors.white,
+                      fontWeight: FontWeight.bold,
                       decoration: taskComplete
                           ? TextDecoration.lineThrough
                           : TextDecoration.none,
@@ -55,7 +57,8 @@ class TaskTile extends StatelessWidget {
               ),
                   Text(
                     taskDatePicked
-                      ? DateFormat('dd/MM/yyyy').format(taskDate)
+                      // ? DateFormat('dd/MM/yyyy').format(taskDate)
+                      ? taskDate
                       : '',
                       style: const TextStyle(
                         color: Colors.white,
