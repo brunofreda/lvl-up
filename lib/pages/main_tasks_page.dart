@@ -36,30 +36,30 @@ class _MainTasksPageState extends State<MainTasksPage> {
       //   mainTasksList.add([
       //     textController.text,
       //     false,
-      //     dateTimeVariable,
+      //     DateFormat('yyyy-MM-dd').format(dateTimeVariable),
       //     false
       //   ]);
       // } else {
       //   mainTasksList.add([
       //     textController.text,
       //     false,
-      //     dateTimeVariable,
+      //     DateFormat('yyyy-MM-dd').format(dateTimeVariable),
       //     true
       //   ]);
       // }
-      if (!datePicked){
-        mainTasksList.add([
-          textController.text,
-          false,
-          DateFormat('yyyy-MM-dd').format(dateTimeVariable),
-          false
-        ]);
-      } else {
+      if (datePicked){
         mainTasksList.add([
           textController.text,
           false,
           DateFormat('yyyy-MM-dd').format(dateTimeVariable),
           true
+        ]);
+      } else {
+        mainTasksList.add([
+          textController.text,
+          false,
+          '',
+          false
         ]);
       }
 

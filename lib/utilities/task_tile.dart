@@ -51,6 +51,7 @@ class TaskTile extends StatelessWidget {
                       decoration: taskComplete
                           ? TextDecoration.lineThrough
                           : TextDecoration.none,
+                      decorationThickness: 2,
                     ),
                   ),
                 ],
