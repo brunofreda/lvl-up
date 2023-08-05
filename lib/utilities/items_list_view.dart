@@ -30,14 +30,11 @@ class ItemsListView extends StatelessWidget {
       child: ReorderableListView.builder(
         itemCount: itemsList.length,
         itemBuilder: (context, index) {
-          // final sortedItems = itemsList..sort((item1, item2) =>
-          //   isSortByDate
-          //     ? (DateFormat('yyyy-MM-dd').format(item1[2])).compareTo((DateFormat('yyyy-MM-dd').format(item2[2])))
-          //     : item1.compareTo(item2));
-          final sortedItems = itemsList..sort((item1, item2) =>
-            isSortByDate
-              ? item1[2].compareTo(item2[2])
-              : item1[2].compareTo(item1[2]));
+          final List sortedItems = itemsList.toList()..sort((item1, item2) => isSortByDate
+            ? item1[2].compareTo(item2[2])
+            : item1[2].compareTo(item1[2])
+          );
+
           final item = sortedItems[index];
 
           return TaskTile(
