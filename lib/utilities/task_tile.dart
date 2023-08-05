@@ -26,7 +26,7 @@ class TaskTile extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(24.0),
           decoration: BoxDecoration(
-            color: Colors.blueGrey[200],
+            color: Colors.indigo[200],
             borderRadius: BorderRadius.circular(7.0),
           ),
           child: Row(
@@ -39,7 +39,7 @@ class TaskTile extends StatelessWidget {
                     shape: const CircleBorder(),
                     side: const BorderSide(color: Colors.white),
                     activeColor: Colors.white,
-                    checkColor: Colors.blueGrey[200],
+                    checkColor: Colors.indigo[200],
                     onChanged: checkBoxOnChanged,
                   ),
                   Text(

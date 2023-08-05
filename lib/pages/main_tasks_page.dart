@@ -216,10 +216,10 @@ class _MainTasksPageState extends State<MainTasksPage> {
         ]
       ),
       body: mainTasksList.isEmpty
-          ? Center(
+          ? const Center(
               child: Text(
                 'Tap the plus button to add a task',
-                style: TextStyle(color: Colors.blueGrey[200]),
+                style: TextStyle(color: Colors.grey),
               ),
             )
           : Column(

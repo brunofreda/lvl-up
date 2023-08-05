@@ -12,7 +12,7 @@ class ScoreCounter extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: const Color.fromRGBO(40, 53, 57, 100),
+          color: Colors.indigo[800],
         ),
         child: Center(
           child: Text(

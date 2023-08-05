@@ -15,7 +15,7 @@ class AppWidget extends StatelessWidget {
       title: 'LvL Up',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
+        primarySwatch: Colors.indigo,
       ),
       home: const MainTasksPage(),
     );
