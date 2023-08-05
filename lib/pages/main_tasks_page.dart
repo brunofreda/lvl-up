@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:lvl_up/data/database.dart';
 
 import '../utilities/discard_alert_dialog.dart';
 import '../utilities/item_dialog_box.dart';
@@ -16,33 +18,51 @@ class MainTasksPage extends StatefulWidget {
 }
 
 class _MainTasksPageState extends State<MainTasksPage> {
-  int score = 0;
-  bool hideCompletedTasks = false;
+  final myBox = Hive.box('mybox');
+  LvlUpDataBase db = LvlUpDataBase();
+
+  @override
+  void initState() {
+    if (myBox.get('MAINTASKSLIST') == null
+        || myBox.get('SCORE') == null
+        || myBox.get('HIDECOMPLETEDTASKS') == null
+        || myBox.get('SORTBYDATE') == null) {
+      db.createInitialData();
+    } else {
+      db.loadData();
+    }
+
+    super.initState();
+  }
+
   final textController = TextEditingController();
-  final List mainTasksList = [];
+
   DateTime dateTimeVariable = DateTime.now();
   String dateText = '';
   bool datePicked = false;
   final GlobalKey dateTextGlobalKey = GlobalKey();
-  bool sortByDate = false;
+
+  // bool sortByDate = false;
 
   void completedTasksBehavior(bool value) {
     setState(() {
-      hideCompletedTasks = value;
+      db.hideCompletedTasks = value;
     });
+
+    db.updateDataBase();
   }
 
   void addTask() {
     setState(() {
       if (datePicked){
-        mainTasksList.add([
+        db.mainTasksList.add([
           textController.text,
           false,
           DateFormat('yyyy-MM-dd').format(dateTimeVariable),
           true
         ]);
       } else {
-        mainTasksList.add([
+        db.mainTasksList.add([
           textController.text,
           false,
           '',
@@ -56,6 +76,8 @@ class _MainTasksPageState extends State<MainTasksPage> {
     datePicked = false;
 
     Navigator.pop(context);
+
+    db.updateDataBase();
   }
 
   void addItem() {
@@ -76,7 +98,7 @@ class _MainTasksPageState extends State<MainTasksPage> {
             child: ItemDialogBox(
               hintString: 'Task',
               itemDialogBoxTextFieldController: textController,
-              itemsList: mainTasksList,
+              itemsList: db.mainTasksList,
               taskDate: dateText,
               dateTextKey: dateTextGlobalKey,
               itemDialogSaveFunction: addTask,
@@ -101,9 +123,11 @@ class _MainTasksPageState extends State<MainTasksPage> {
 
     if (taskIndex > -1) {
      setState(() {
-       mainTasksList.removeAt(taskIndex);
+       db.mainTasksList.removeAt(taskIndex);
      });
     }
+
+    db.updateDataBase();
   }
 
   void pickDate() {
@@ -116,9 +140,9 @@ class _MainTasksPageState extends State<MainTasksPage> {
       setState(() {
         dateTimeVariable = value!;
 
-        if (dateTextGlobalKey.currentState != null && dateTextGlobalKey.currentState!.mounted) {
+        if (dateTextGlobalKey.currentState != null &&
+            dateTextGlobalKey.currentState!.mounted) {
           dateTextGlobalKey.currentState!.setState(() {
-            // dateText = DateFormat('dd/MM/yyyy').format(dateTimeVariable);
             dateText = DateFormat('yyyy-MM-dd').format(dateTimeVariable);
           });
         }
@@ -130,36 +154,40 @@ class _MainTasksPageState extends State<MainTasksPage> {
 
   void taskCheckBoxChanged(bool? value, int index) {
     setState(() {
-      mainTasksList[index][1] = !mainTasksList[index][1];
+      db.mainTasksList[index][1] = !db.mainTasksList[index][1];
 
-      if (mainTasksList[index][1] == true) {
-        score++;
-      } else if (mainTasksList.isNotEmpty) {
-        score--;
+      if (db.mainTasksList[index][1] == true) {
+        db.score++;
+      } else if (db.mainTasksList.isNotEmpty) {
+        db.score--;
       }
     });
+
+    db.updateDataBase();
   }
 
   void editTask(int taskIndex) {
     setState(() {
-      mainTasksList[taskIndex][0] = textController.text;
+      db.mainTasksList[taskIndex][0] = textController.text;
 
       if (datePicked) {
         // mainTasksList[taskIndex][2] = DateFormat('dd/MM/yyyy').format(dateTimeVariable);
-        mainTasksList[taskIndex][2] = DateFormat('yyyy-MM-dd').format(dateTimeVariable);
+        db.mainTasksList[taskIndex][2] = DateFormat('yyyy-MM-dd').format(dateTimeVariable);
       }
     });
 
     datePicked = false;
 
     Navigator.pop(context);
+
+    db.updateDataBase();
   }
 
   void editItem(int itemIndex) {
     setState(() {
-      textController.text = mainTasksList[itemIndex][0];
+      textController.text = db.mainTasksList[itemIndex][0];
 
-      dateText = mainTasksList[itemIndex][2];
+      dateText = db.mainTasksList[itemIndex][2];
     });
 
     showDialog(
@@ -169,7 +197,7 @@ class _MainTasksPageState extends State<MainTasksPage> {
           content: ItemDialogBox(
             hintString: 'Task',
             itemDialogBoxTextFieldController: textController,
-            itemsList: mainTasksList,
+            itemsList: db.mainTasksList,
             taskDate: dateText, // mainTasksList[taskIndex][2],
             dateTextKey: dateTextGlobalKey,
             itemDialogSaveFunction: () => editTask(itemIndex),
@@ -187,10 +215,12 @@ class _MainTasksPageState extends State<MainTasksPage> {
         newIndex--;
       }
 
-      final tile = mainTasksList.removeAt(oldIndex);
+      final tile = db.mainTasksList.removeAt(oldIndex);
 
-      mainTasksList.insert(newIndex, tile);
+      db.mainTasksList.insert(newIndex, tile);
     });
+
+    db.updateDataBase();
   }
 
   @override
@@ -205,17 +235,17 @@ class _MainTasksPageState extends State<MainTasksPage> {
           ),
         centerTitle: true,
         leading: ScoreCounter(
-          score: score,
+          score: db.score,
         ),
         actions: [
           SettingCheckButtonOption(
-            booleanValue: hideCompletedTasks,
+            booleanValue: db.hideCompletedTasks,
             settingText: 'Hide completed tasks',
             onChangedFunction: completedTasksBehavior,
           ),
         ]
       ),
-      body: mainTasksList.isEmpty
+      body: db.mainTasksList.isEmpty
           ? const Center(
               child: Text(
                 'Tap the plus button to add a task',
@@ -229,11 +259,13 @@ class _MainTasksPageState extends State<MainTasksPage> {
                 child: TextButton.icon(
                   onPressed: () {
                     setState(() {
-                      sortByDate = !sortByDate;
+                      db.sortByDate = !db.sortByDate;
                     });
+
+                    db.updateDataBase();
                   },
                   label: Text(
-                    sortByDate
+                    db.sortByDate
                     ? 'Date'
                     : 'My order'
                   ),
@@ -242,12 +274,12 @@ class _MainTasksPageState extends State<MainTasksPage> {
               ),
               Expanded(
                 child: ItemsListView(
-                  itemsList: mainTasksList,
-                  isSortByDate: sortByDate,
+                  itemsList: db.mainTasksList,
+                  isSortByDate: db.sortByDate,
                   itemCheckBoxChanged: taskCheckBoxChanged,
                   itemEditButtonOnPressed: editItem,
                   updateTilesFunction: updateTiles,
-                  isHideCompletedTasks: hideCompletedTasks,
+                  isHideCompletedTasks: db.hideCompletedTasks,
                 ),
               ),
             ],
