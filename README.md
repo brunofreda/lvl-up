@@ -18,7 +18,18 @@ features of this version of the app.
 
 # Features
 
--
+- Task list viewer in form of tiles with a hint text whenever there's no tasks added
+- Floating button to add tasks
+- The floating button opens a dialog box in which to type the name of the task, pick a date (which
+  is shown in the dialog box), and save or discard the task.
+- Task tiles with a check button to indicate the task has been completed (which lines through the
+  task's name or hides it depending on the settings of the user) and an edit button
+- Adding a task shows a button to sort them by personal order by dragging them or by date
+- The edit button opens a dialog box with the same buttons of the dialog box for adding tasks but
+  showing the selected task's data
+- A settings button to choose whether to hide completed tasks or not
+- A score counter which adds a point with each task completed
+- The data is saved in the local storage
 
 # Some of the things the full app would have
 
@@ -44,7 +55,6 @@ Client side
   themes, all of which would be related to the score and objectives set by the user
 - Improving some of the graphics and transitions
 - Store the data in your account, which would be synced with the webapp
-
 
 Code design
 
