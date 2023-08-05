@@ -32,21 +32,6 @@ class _MainTasksPageState extends State<MainTasksPage> {
 
   void addTask() {
     setState(() {
-      // if (!datePicked){
-      //   mainTasksList.add([
-      //     textController.text,
-      //     false,
-      //     DateFormat('yyyy-MM-dd').format(dateTimeVariable),
-      //     false
-      //   ]);
-      // } else {
-      //   mainTasksList.add([
-      //     textController.text,
-      //     false,
-      //     DateFormat('yyyy-MM-dd').format(dateTimeVariable),
-      //     true
-      //   ]);
-      // }
       if (datePicked){
         mainTasksList.add([
           textController.text,
@@ -260,6 +245,7 @@ class _MainTasksPageState extends State<MainTasksPage> {
                   itemCheckBoxChanged: taskCheckBoxChanged,
                   itemEditButtonOnPressed: editItem,
                   updateTilesFunction: updateTiles,
+                  isHideCompletedTasks: hideCompletedTasks,
                 ),
               ),
             ],

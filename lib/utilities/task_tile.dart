@@ -14,7 +14,6 @@ class TaskTile extends StatelessWidget {
 
   final String taskText;
   final bool taskComplete;
-  // final DateTime taskDate;
   final String taskDate;
   final bool taskDatePicked;
   final void Function(bool?)? checkBoxOnChanged;

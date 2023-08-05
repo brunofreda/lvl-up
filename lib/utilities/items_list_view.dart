@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import 'task_tile.dart';
 
@@ -10,7 +9,8 @@ class ItemsListView extends StatelessWidget {
     required this.isSortByDate,
     required this.itemCheckBoxChanged,
     required this.itemEditButtonOnPressed,
-    required this.updateTilesFunction
+    required this.updateTilesFunction,
+    required this.isHideCompletedTasks
   });
 
   final List itemsList;
@@ -18,6 +18,7 @@ class ItemsListView extends StatelessWidget {
   final void Function(bool?, int) itemCheckBoxChanged;
   final void Function(int) itemEditButtonOnPressed;
   final void Function(int, int) updateTilesFunction;
+  final bool isHideCompletedTasks;
 
   @override
   Widget build(BuildContext context) {
@@ -30,22 +31,37 @@ class ItemsListView extends StatelessWidget {
       child: ReorderableListView.builder(
         itemCount: itemsList.length,
         itemBuilder: (context, index) {
-          final List sortedItems = itemsList.toList()..sort((item1, item2) => isSortByDate
-            ? item1[2].compareTo(item2[2])
-            : item1[2].compareTo(item1[2])
+          final List sortedItems = itemsList.toList()..sort((item1, item2) =>
+            isSortByDate
+              ? item1[2].compareTo(item2[2])
+              : item1[2].compareTo(item1[2])
           );
 
           final item = sortedItems[index];
 
-          return TaskTile(
-            key: ValueKey(index),
-            taskText: item[0],
-            taskComplete: item[1],
-            taskDate: item[2],
-            taskDatePicked: item[3],
-            checkBoxOnChanged: (value) => itemCheckBoxChanged(value, index),
-            editButtonOnPressed: () => itemEditButtonOnPressed(index),
-          );
+          return isHideCompletedTasks
+            ? item[1] == false
+              ? TaskTile(
+                  key: ValueKey(index),
+                  taskText: item[0],
+                  taskComplete: item[1],
+                  taskDate: item[2],
+                  taskDatePicked: item[3],
+                  checkBoxOnChanged: (value) => itemCheckBoxChanged(value, index),
+                  editButtonOnPressed: () => itemEditButtonOnPressed(index),
+                )
+              : Container(
+                  key: ValueKey(index),
+                )
+            : TaskTile(
+                key: ValueKey(index),
+                taskText: item[0],
+                taskComplete: item[1],
+                taskDate: item[2],
+                taskDatePicked: item[3],
+                checkBoxOnChanged: (value) => itemCheckBoxChanged(value, index),
+                editButtonOnPressed: () => itemEditButtonOnPressed(index),
+              );
         },
         onReorder: (oldIndex, newIndex) => updateTilesFunction(oldIndex, newIndex),
       ),
