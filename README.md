@@ -16,12 +16,17 @@ prototype of, which would have all sorts of gamification features. For now, the 
 sort that I incorporated is that completed tasks give you points. Below there's a full list of the
 features of this version of the app.
 
+![Alt text](https://drive.google.com/file/d/1pZfTBqlMvIWW6gPdlGrL_3EA8WQDHAKj/view?usp=drive_link)
+![Alt text](https://drive.google.com/file/d/1NKGWPb0pbX4SDen7yoWBHo46bCpWQMmE/view?usp=drive_link
+
 # Features
 
 - Task list viewer in form of tiles with a hint text whenever there's no tasks added
 - Floating button to add tasks
 - The floating button opens a dialog box in which to type the name of the task, pick a date (which
-  is shown in the dialog box), and save or discard the task.
+  is shown in the dialog box), and save or discard the task
+- Calendar type selector for picking a date
+- A confirmation dialog box whenever the discard button is pressed
 - Task tiles with a check button to indicate the task has been completed (which lines through the
   task's name or hides it depending on the settings of the user) and an edit button
 - Adding a task shows a button to sort them by personal order by dragging them or by date
