@@ -16,8 +16,9 @@ prototype of, which would have all sorts of gamification features. For now, the 
 sort that I incorporated is that completed tasks give you points. Below there's a full list of the
 features of this version of the app.
 
-![Alt text](https://drive.google.com/file/d/1pZfTBqlMvIWW6gPdlGrL_3EA8WQDHAKj/view?usp=drive_link)
-![Alt text](https://drive.google.com/file/d/1NKGWPb0pbX4SDen7yoWBHo46bCpWQMmE/view?usp=drive_link
+![LvL Up - First image](images/lvl_up_1.jpg)
+
+![LvL Up - Second image](images/lvl_up_2.jpg)
 
 # Features
 
