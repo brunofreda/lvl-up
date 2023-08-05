@@ -27,7 +27,9 @@ class _MainTasksPageState extends State<MainTasksPage> {
   bool sortByDate = false;
 
   void completedTasksBehavior(bool value) {
-    hideCompletedTasks = value;
+    setState(() {
+      hideCompletedTasks = value;
+    });
   }
 
   void addTask() {
