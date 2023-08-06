@@ -20,7 +20,7 @@ features of this version of the app.
 
 ![LvL Up - Second image](images/lvl_up_2.jpg)
 
-# Features
+## Features
 
 - Task list viewer in form of tiles with a hint text whenever there's no tasks added
 - Floating button to add tasks
@@ -37,7 +37,7 @@ features of this version of the app.
 - A score counter which adds a point with each task completed
 - The data is saved in the local storage
 
-# Some of the things the full app would have
+## Some of the things the full app would have
 
 Client side
 
