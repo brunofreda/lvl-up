@@ -42,8 +42,6 @@ class _MainTasksPageState extends State<MainTasksPage> {
   bool datePicked = false;
   final GlobalKey dateTextGlobalKey = GlobalKey();
 
-  // bool sortByDate = false;
-
   void completedTasksBehavior(bool value) {
     setState(() {
       db.hideCompletedTasks = value;
@@ -171,7 +169,6 @@ class _MainTasksPageState extends State<MainTasksPage> {
       db.mainTasksList[taskIndex][0] = textController.text;
 
       if (datePicked) {
-        // mainTasksList[taskIndex][2] = DateFormat('dd/MM/yyyy').format(dateTimeVariable);
         db.mainTasksList[taskIndex][2] = DateFormat('yyyy-MM-dd').format(dateTimeVariable);
       }
     });

@@ -69,3 +69,4 @@ Code design
 - Maybe use a Map to store the tasks data instead of a List
 - Make each page an instance of a class called "Page" that contains at least the AppBar
 - Check which class fields (if any) are set as "required" but shouldn't be
+- Check which variables, functions or classes aren't private and should be
