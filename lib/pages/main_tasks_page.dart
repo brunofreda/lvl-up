@@ -108,24 +108,28 @@ class _MainTasksPageState extends State<MainTasksPage> {
     );
   }
 
-  void deleteItem(int taskIndex) {
+  void deleteTask(int taskIndex) {
+    if (taskIndex > -1) {
+      setState(() {
+        db.mainTasksList.removeAt(taskIndex);
+      });
+    }
+
+    db.updateDataBase();
+  }
+
+  void deleteItem(int itemIndex) {
     showDialog(
       context: context,
       builder: (builder){
         return DiscardAlertDialog(
           alertText: 'Are you sure you want to discard this task?',
           previousContext: context,
+          itemIndex: itemIndex,
+          itemDialogDeleteFunction: deleteTask,
         );
       }
     );
-
-    if (taskIndex > -1) {
-     setState(() {
-       db.mainTasksList.removeAt(taskIndex);
-     });
-    }
-
-    db.updateDataBase();
   }
 
   void pickDate() {

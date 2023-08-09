@@ -4,11 +4,15 @@ class DiscardAlertDialog extends StatelessWidget {
   const DiscardAlertDialog({
     super.key,
     required this.alertText,
-    required this.previousContext
+    required this.previousContext,
+    required this.itemIndex,
+    required this.itemDialogDeleteFunction
   });
 
   final String alertText;
   final BuildContext previousContext;
+  final int itemIndex;
+  final void Function(int) itemDialogDeleteFunction;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +35,7 @@ class DiscardAlertDialog extends StatelessWidget {
                   children: [
                     ElevatedButton(
                       onPressed: () {
+                        itemDialogDeleteFunction(itemIndex);
                         Navigator.pop(context);
                         Navigator.pop(previousContext);
                       },
