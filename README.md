@@ -17,7 +17,7 @@ sort that I incorporated is that completed tasks give you points. Below there's 
 features of this version of the app.
 
 <div align="center">
-  <video src="[myvideo.mp4](https://github.com/brunofreda/lvl-up/assets/47567054/dc1400cc-6ef4-4843-800e-7f973617cfeb)" width="400" />
+  <video src="videos/lvl_up_showcase" width="400" />
 </div>
 
 ![LvL Up - First image](images/lvl_up_1.jpg)
