@@ -16,6 +16,8 @@ prototype of, which would have all sorts of gamification features. For now, the 
 sort that I incorporated is that completed tasks give you points. Below there's a full list of the
 features of this version of the app.
 
+https://github.com/brunofreda/lvl-up/assets/47567054/dc1400cc-6ef4-4843-800e-7f973617cfeb
+
 ![LvL Up - First image](images/lvl_up_1.jpg)
 
 ![LvL Up - Second image](images/lvl_up_2.jpg)
