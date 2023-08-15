@@ -45,6 +45,10 @@ Client side
 
 - Title logo
 - Icon next to the score counter
+- Other useful features (a calendar, events, notes, objectives, and more)
+- Homepage with stats and thumbnails of the pages of the other features which link you to those
+  pages
+- The pages can be also accesed by dragging to the right or to the left
 - If the completed tasks are not set to be hidden, they are set aside in a list of their own down
   below
 - Multiple date formats to choose from
@@ -54,11 +58,7 @@ Client side
 - When sort by date is selected, the tasks without date would stay at the bottom of the list instead
   of on the top
 - The option to add multiple tasks pages
-- Events
-- A calendar
 - Themes
-- Objectives
-- Notes
 - The tiles could be chosen to be shown in a gradient of color relative to their position in the
   list to represent their priority in time
 - A customizable profile with gamification features, such as level of user, milestones, items, more
