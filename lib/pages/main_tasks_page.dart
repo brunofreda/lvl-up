@@ -23,10 +23,10 @@ class _MainTasksPageState extends State<MainTasksPage> {
 
   @override
   void initState() {
-    if (myBox.get('MAINTASKSLIST') == null
-        || myBox.get('SCORE') == null
-        || myBox.get('HIDECOMPLETEDTASKS') == null
-        || myBox.get('SORTBYDATE') == null) {
+    if (myBox.get('MAINTASKSLIST') == null ||
+        myBox.get('SCORE') == null ||
+        myBox.get('HIDECOMPLETEDTASKS') == null ||
+        myBox.get('SORTBYDATE') == null) {
       db.createInitialData();
     } else {
       db.loadData();
@@ -52,7 +52,7 @@ class _MainTasksPageState extends State<MainTasksPage> {
 
   void addTask() {
     setState(() {
-      if (datePicked){
+      if (datePicked) {
         db.mainTasksList.add([
           textController.text,
           false,
@@ -60,12 +60,7 @@ class _MainTasksPageState extends State<MainTasksPage> {
           true
         ]);
       } else {
-        db.mainTasksList.add([
-          textController.text,
-          false,
-          '',
-          false
-        ]);
+        db.mainTasksList.add([textController.text, false, '', false]);
       }
 
       textController.clear();
@@ -104,8 +99,7 @@ class _MainTasksPageState extends State<MainTasksPage> {
               dateTimePickerOnPressed: pickDate,
             ),
           );
-        }
-    );
+        });
   }
 
   void deleteTask(int taskIndex) {
@@ -120,16 +114,15 @@ class _MainTasksPageState extends State<MainTasksPage> {
 
   void deleteItem(int itemIndex) {
     showDialog(
-      context: context,
-      builder: (builder){
-        return DiscardAlertDialog(
-          alertText: 'Are you sure you want to discard this task?',
-          previousContext: context,
-          itemIndex: itemIndex,
-          itemDialogDeleteFunction: deleteTask,
-        );
-      }
-    );
+        context: context,
+        builder: (builder) {
+          return DiscardAlertDialog(
+            alertText: 'Are you sure you want to discard this task?',
+            previousContext: context,
+            itemIndex: itemIndex,
+            itemDialogDeleteFunction: deleteTask,
+          );
+        });
   }
 
   void pickDate() {
@@ -173,7 +166,8 @@ class _MainTasksPageState extends State<MainTasksPage> {
       db.mainTasksList[taskIndex][0] = textController.text;
 
       if (datePicked) {
-        db.mainTasksList[taskIndex][2] = DateFormat('yyyy-MM-dd').format(dateTimeVariable);
+        db.mainTasksList[taskIndex][2] =
+            DateFormat('yyyy-MM-dd').format(dateTimeVariable);
       }
     });
 
@@ -192,22 +186,21 @@ class _MainTasksPageState extends State<MainTasksPage> {
     });
 
     showDialog(
-      context: context,
-      builder: (builder) {
-        return AlertDialog(
-          content: ItemDialogBox(
-            hintString: 'Task',
-            itemDialogBoxTextFieldController: textController,
-            itemsList: db.mainTasksList,
-            taskDate: dateText, // mainTasksList[taskIndex][2],
-            dateTextKey: dateTextGlobalKey,
-            itemDialogSaveFunction: () => editTask(itemIndex),
-            itemDialogDeleteFunction: () => deleteItem(itemIndex),
-            dateTimePickerOnPressed: pickDate,
-          ),
-        );
-      }
-    );
+        context: context,
+        builder: (builder) {
+          return AlertDialog(
+            content: ItemDialogBox(
+              hintString: 'Task',
+              itemDialogBoxTextFieldController: textController,
+              itemsList: db.mainTasksList,
+              taskDate: dateText, // mainTasksList[taskIndex][2],
+              dateTextKey: dateTextGlobalKey,
+              itemDialogSaveFunction: () => editTask(itemIndex),
+              itemDialogDeleteFunction: () => deleteItem(itemIndex),
+              dateTimePickerOnPressed: pickDate,
+            ),
+          );
+        });
   }
 
   void updateTiles(int oldIndex, int newIndex) {
@@ -228,24 +221,31 @@ class _MainTasksPageState extends State<MainTasksPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+          title: Text(
             'LvL Up',
-            style: GoogleFonts.notoSans(
-              fontWeight: FontWeight.w600,
+            style: GoogleFonts.notoSans(fontWeight: FontWeight.w600),
+          ),
+          centerTitle: true,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(10.0),
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 6.0),
+              child: Text(
+                'Tasks',
+                style: GoogleFonts.notoSans(color: Colors.white),
+              ),
             ),
           ),
-        centerTitle: true,
-        leading: ScoreCounter(
-          score: db.score,
-        ),
-        actions: [
-          SettingCheckButtonOption(
-            booleanValue: db.hideCompletedTasks,
-            settingText: 'Hide completed tasks',
-            onChangedFunction: completedTasksBehavior,
+          leading: ScoreCounter(
+            score: db.score,
           ),
-        ]
-      ),
+          actions: [
+            SettingCheckButtonOption(
+              booleanValue: db.hideCompletedTasks,
+              settingText: 'Hide completed tasks',
+              onChangedFunction: completedTasksBehavior,
+            ),
+          ]),
       body: db.mainTasksList.isEmpty
           ? const Center(
               child: Text(
@@ -254,37 +254,33 @@ class _MainTasksPageState extends State<MainTasksPage> {
               ),
             )
           : Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: TextButton.icon(
-                  onPressed: () {
-                    setState(() {
-                      db.sortByDate = !db.sortByDate;
-                    });
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: TextButton.icon(
+                    onPressed: () {
+                      setState(() {
+                        db.sortByDate = !db.sortByDate;
+                      });
 
-                    db.updateDataBase();
-                  },
-                  label: Text(
-                    db.sortByDate
-                    ? 'Date'
-                    : 'My order'
+                      db.updateDataBase();
+                    },
+                    label: Text(db.sortByDate ? 'Date' : 'My order'),
+                    icon: const Icon(Icons.sort),
                   ),
-                  icon: const Icon(Icons.sort),
                 ),
-              ),
-              Expanded(
-                child: ItemsListView(
-                  itemsList: db.mainTasksList,
-                  isSortByDate: db.sortByDate,
-                  itemCheckBoxChanged: taskCheckBoxChanged,
-                  itemEditButtonOnPressed: editItem,
-                  updateTilesFunction: updateTiles,
-                  isHideCompletedTasks: db.hideCompletedTasks,
+                Expanded(
+                  child: ItemsListView(
+                    itemsList: db.mainTasksList,
+                    isSortByDate: db.sortByDate,
+                    itemCheckBoxChanged: taskCheckBoxChanged,
+                    itemEditButtonOnPressed: editItem,
+                    updateTilesFunction: updateTiles,
+                    isHideCompletedTasks: db.hideCompletedTasks,
+                  ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
       floatingActionButton: FloatingActionButton(
         onPressed: addItem,
         tooltip: 'Add task',

@@ -8,7 +8,12 @@ class ScoreCounter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.fromLTRB(
+        10.0,
+        4.0,
+        10.0,
+        4.0,
+      ),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
@@ -17,9 +22,7 @@ class ScoreCounter extends StatelessWidget {
         child: Center(
           child: Text(
             '$score',
-            style: const TextStyle(
-              fontSize: 18,
-            ),
+            style: const TextStyle(fontSize: 18),
           ),
         ),
       ),

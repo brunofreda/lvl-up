@@ -1,20 +1,10 @@
-# LvL Up
+# LvL Up - Tasks module
 
 Welcome to the LvL Up app!
 
-This is a fully functional to do list app with gamification features.
+This is one module of a bigger project which would be the full app, a self-management app with gamification features. This module includes the view to create, update and delete tasks.
 
-Its main inspiration was Google Tasks, an app that I use daily, but in which some functionalities
-were lacking in some way for me. The features I would have loved to see in such app were mainly two:
-being able to have a personal order for the tasks even when you select to sort them by date, and
-being able to hide completed tasks instead of accumulating them in a separate section.
-
-So I tried to recreate something similar to Google Tasks but incorporating these features. But then
-I started thinking what else I would like to see in a to do list app. What if completing tasks could
-be gamified? And from that LvL Up was born! A full fledged to do list app, which this is just a
-prototype of, which would have all sorts of gamification features. For now, the only feature of this
-sort that I incorporated is that completed tasks give you points. Below there's a full list of the
-features of this version of the app.
+Its main inspiration was Google Tasks, an app that I use daily, but in which some functionalities were lacking in some way for me. The features I would have loved to see in such app were mainly two: being able to have a personal order for the tasks even when you select to sort them by date, and being able to hide completed tasks instead of accumulating them in a separate section. So I tried to recreate something similar to Google Tasks but incorporating these features. It also includes one gamification feature: completed tasks give you points.
 
 https://github.com/brunofreda/lvl-up/assets/47567054/c5a5e6d4-e122-42f6-8d84-81280c60c1ab
 
@@ -58,7 +48,7 @@ Client side
 - When sort by date is selected, the tasks without date would stay at the bottom of the list instead
   of on the top
 - The option to add multiple tasks pages
-- Themes
+- Customization (backgrounds, color of notes, themes, etc.)
 - The tiles could be chosen to be shown in a gradient of color relative to their position in the
   list to represent their priority in time
 - A customizable profile with gamification features, such as level of user, milestones, items, more
