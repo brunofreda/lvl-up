@@ -38,7 +38,7 @@ Client side
 - Other useful features (a calendar, events, notes, objectives, and more)
 - Homepage with stats and thumbnails of the pages of the other features which link you to those
   pages
-- The pages can be also accesed by dragging to the right or to the left
+- The pages can also be accesed by dragging to the right or to the left
 - If the completed tasks are not set to be hidden, they are set aside in a list of their own down
   below
 - Multiple date formats to choose from
