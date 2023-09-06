@@ -4,7 +4,7 @@ Welcome to the LvL Up app!
 
 This is one module of a bigger project, a full-fledged self-management app with gamification features. This module includes the view to create, update and delete tasks.
 
-Its main inspiration was Google Tasks, an app that I use daily, but in which some functionalities were lacking in some way for me. The features I would have loved to see in such app were mainly two: being able to have a personal order for the tasks even when you select to sort them by date, and being able to hide completed tasks instead of accumulating them in a separate section. So I tried to recreate something similar to Google Tasks but incorporating these features. It also includes one gamification feature: completed tasks give you points.
+The main inspiration for this module was Google Tasks, an app that I use daily, but in which some functionalities were lacking in some way for me. The features I would have loved to see in such app were mainly two: being able to have a personal order for the tasks even when you select to sort them by date, and being able to hide completed tasks instead of accumulating them in a separate section. So I tried to recreate something similar to Google Tasks but incorporating these features. It also includes one gamification feature: completed tasks give you points.
 
 https://github.com/brunofreda/lvl-up/assets/47567054/c5a5e6d4-e122-42f6-8d84-81280c60c1ab
 
