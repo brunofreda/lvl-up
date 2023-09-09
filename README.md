@@ -8,9 +8,9 @@ The main inspiration for this module was Google Tasks, an app that I use daily, 
 
 https://github.com/brunofreda/lvl-up/assets/47567054/c5a5e6d4-e122-42f6-8d84-81280c60c1ab
 
-![LvL Up - First image](images/lvl_up_1.jpg)
+![LvL Up - First image](images/lvl_up_tasks_1.jpg)
 
-![LvL Up - Second image](images/lvl_up_2.jpg)
+![LvL Up - Second image](images/lvl_up_tasks_2.jpg)
 
 ## Features
 
