@@ -27,7 +27,7 @@ https://github.com/brunofreda/lvl-up/assets/47567054/c5a5e6d4-e122-42f6-8d84-812
   showing the selected task's data
 - A settings button to choose whether to hide completed tasks or not
 - A score counter which adds a point with each task completed
-- The data is saved in the local storage
+- The data is saved in the local storage using Hive
 
 ## Some of the things the full app would have
 

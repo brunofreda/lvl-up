@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:lvl_up/data/database.dart';
 
+import '../data/database.dart';
 import '../utilities/discard_alert_dialog.dart';
 import '../utilities/item_dialog_box.dart';
 import '../utilities/items_list_view.dart';
@@ -36,7 +36,6 @@ class _MainTasksPageState extends State<MainTasksPage> {
   }
 
   final textController = TextEditingController();
-
   DateTime dateTimeVariable = DateTime.now();
   String dateText = '';
   bool datePicked = false;
